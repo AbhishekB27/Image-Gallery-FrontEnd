@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+// import { loadCart } from "./actions/cart";
+// import { getProducts } from "./actions/product";
+import verifyToken from "./actions/auth";
+import "./App.css";
+import { MyApp } from "./components/MyApp";
 
 function App() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  // useEffect(() => {
+  //   dispatch(getProducts())
+  // })
+  
+  const {token,user} = useSelector(state => state.auth)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if(token != null){
+      console.log("run")
+      dispatch(verifyToken(token))
+      console.log(user.email)
+    }
+    else {
+      navigate('/login')
+    }
+  }, [token])
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+        <MyApp />
     </div>
   );
 }
 
 export default App;
+
