@@ -17,7 +17,7 @@ export const TextField = ({ label, ...props }) => {
         placeholder={label}
         id={props.name}
         {...props}
-        className={`border border-blue-400 bg-transparent placeholder-transparent placeholder:text-black px-[6px] py-[4px] pl-[27px] peer w-full outline-none rounded-sm ${
+        className={`border-2 border-blue-400 bg-transparent placeholder-transparent placeholder:text-black px-[6px] py-[4px] pl-[27px] peer w-full outline-none rounded-md ${
           meta.error && meta.touched
             ? "ring-2 ring-red-400 ring-offset-2"
             : meta.touched

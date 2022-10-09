@@ -1,13 +1,13 @@
 const initialState = {
-    token: null,
+    imges:[],
     user:{
         userName:null,
         email:null,
     },
-    authLoaded:false
+    review:[]
 }
 
-const authReducer = (state = initialState,action)=>{
+const usersData = (state = initialState,action)=>{
     const {type,payload} = action
     switch(type){
         case 'SET_AUTH_LOADED':

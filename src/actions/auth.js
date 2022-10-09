@@ -133,3 +133,42 @@ export const signUpUser = ({avtar,userName,firstName,lastName,email,password,con
         })
     }
 }
+
+export const updateUser = (updatedData)=> async(dispatch)=>{
+    console.log(updatedData)
+    try {
+        dispatch({
+            type:'SET_LOADING',
+            payload:{state:true}
+        })
+        const res = await axiosI.put('/auth/update', {
+            ...updatedData
+        })
+        const {status,data,message} = res.data
+        if(status === 'Success'){
+            toast.success(message,{position:"top-center"})
+            dispatch({
+                type:'UPDATE_SUCCESS',
+                payload:{
+                    ...data
+                }
+            })
+        }
+        else{
+            toast.error(message,{position:"top-center"})
+            dispatch({
+                type:'UPDATE_FAILURE',
+                payload:{...updatedData}
+            })
+        }
+    } catch (error) {
+        console.log(error.message)
+        toast.error(error.message,{position:"top-center"})
+    }
+    finally{
+        dispatch({
+            type:'SET_LOADING',
+            payload:{state:false}
+        })
+    }
+}

@@ -25,6 +25,7 @@ function App() {
       console.log(user.email)
     }
     else {
+      console.log(token)
       navigate('/login')
     }
   }, [token])

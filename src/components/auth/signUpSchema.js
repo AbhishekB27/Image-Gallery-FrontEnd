@@ -4,15 +4,15 @@ const SignUpSchema = () => {
   return Yup.object().shape({
     userName: Yup.string()
       .required("Username is required")
-      .min(5, "Username must be at least 5 characters")
+      .min(6, "Username must be at least 6 characters")
       .max(20, "Username must not exceed 20 characters"),
     firstName: Yup.string()
       .required("FirstName is required")
-      .min(6, "Username must be at least 6 characters")
+      .min(3, "Username must be at least 3 characters")
       .max(20, "Username must not exceed 20 characters"),
     lastName: Yup.string()
       .required("LastName is required")
-      .min(6, "Username must be at least 6 characters")
+      .min(5, "Username must be at least 5 characters")
       .max(20, "Username must not exceed 20 characters"),
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()

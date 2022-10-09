@@ -6,7 +6,7 @@ import {
   faUserCircle,
 } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTruckFast, faChevronDown, faIndianRupeeSign, faCameraAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTruckFast, faChevronDown, faIndianRupeeSign, faCameraAlt, faUpload } from "@fortawesome/free-solid-svg-icons";
 import logo from "./images/logo.png";
 import { AnimatePresence, motion } from "framer-motion";
 import { Hamburger } from "./Hamburger";
@@ -14,19 +14,32 @@ import { Link} from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ProfileLogout } from "./ProfileLogout";
 import { useEffect } from "react";
+import { UploadImg } from "../imageC/UplaodImg";
 
 export const Header = ({ theme, setTheme }) => {
   const { token,user,authLoaded} =useSelector(state=> state.auth)
     const [toggle, setToggle] = useState(false)
-    const [modal, setModal] = useState(false)
-console.log("modal: " + modal)
+    const [lModal, setlModal] = useState(false)
+    const [uModal, setUmodal] = useState(false)
+console.log("lModal: " + lModal)
     const handleMode = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  const handleProfile = ()=>{
-    setModal(!modal)
-    console.log(modal)
+  const handleProfile = (event)=>{
+    const name = event.target.name
+    if(uModal){
+    setUmodal(!uModal)
+    }
+    setlModal(!lModal)
+
+  }
+  const handleLogOut = (event)=>{
+    const name = event.target.name
+    if(lModal){
+    setlModal(!lModal)
+    }
+    setUmodal(!uModal)
   }
   return (
     <motion.header
@@ -36,7 +49,8 @@ console.log("modal: " + modal)
       className="border-yellow-500 w-full absolute top-0"
     >
       <AnimatePresence>
-      {token && modal ? <ProfileLogout modal={modal} setModal={setModal} /> : ""}
+      {token && lModal ? <ProfileLogout lModal={lModal} setlModal={setlModal} /> : ""}
+      {token && uModal ? <UploadImg uModal={uModal} setUmodal={setUmodal} /> : ""}
       </AnimatePresence>
       <div className="text-base flex  md:justify-between md:gap-0 gap-3 justify-center items-center px-3 py-2 flex-wrap dark:bg-black/25 bg-black/5">
         <div className="">
@@ -67,18 +81,29 @@ console.log("modal: " + modal)
                 </motion.button>{" "}
               </>
             ) : (
-              <motion.button
+              <div className="flex gap-2">
+                <motion.button
               onClick={handleProfile}
               whileTap={{scale:0.7}}
-              className="px-5 pr-2 py-1 flex gap-2 justify-between items-center text-lg rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
-                <span>
-                 {user.email ? user.email.slice(0,2).toUpperCase(): ''} <FontAwesomeIcon className="text-blue-500" icon={faUserCircle} />{" "}
+              name='logOut'
+              className="px-5 py-1 flex gap-2 justify-between items-center text-lg rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
+                <span className="text-pink-500">
+                {user.email ? user.firstName[0].toUpperCase()+user.lastName[0].toUpperCase(): ''} <FontAwesomeIcon className="text-blue-400" icon={faUserCircle} />{" "}
                 </span>{" "}
-                <span className="text-base">
+                {/* <span className="text-base">
                   {" "}
                   <FontAwesomeIcon icon={faChevronDown} />{" "}
-                </span>
+                </span> */}
               </motion.button>
+              <motion.button
+              onClick={handleLogOut}
+              whileTap={{scale:0.7}}
+              name='upload'
+              className="px-5 py-1 flex gap-2 justify-between items-center text-lg rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
+                Upload
+                <FontAwesomeIcon icon={faUpload}/>
+              </motion.button>
+              </div>
             )}{" "}
           </div>
           <div className="flex justify-center items-center gap-2 font-poppins dark:border-[#edf2f4] border-[#14213d] border-2 px-2 rounded-md">
@@ -127,7 +152,7 @@ console.log("modal: " + modal)
           <Link to='/'> HOME </Link>
           </li>
           <li className="md:w-[100px] md:text-center   text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
-          <Link to='/products'> SHOP </Link>
+          <Link> CATEGORIES </Link>
           </li>
           <li className="md:w-[100px] md:text-center   text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
           <Link to='/contactUs'> CONTACT </Link>

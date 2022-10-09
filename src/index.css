@@ -22,3 +22,114 @@
     50%{background-position:right}
     100%{background-position:left}
   }
+  .gradient-text2{
+    background: linear-gradient(to right, crimson,pink,springgreen);
+    background-size: 200% 200%;
+    animation: rainbow 2s ease-in-out infinite;
+    background-clip: text;
+    text-align:center;
+    transition: color .2s ease-in-out;
+    color:rgba(0,0,0,0);
+  }
+  /* .gradient-text2:hover{
+  } */
+
+  /* custom loader from whirl */
+/**
+  * Flip to square
+  *
+  * @author jh3y - jheytompkins.com
+*/
+@-webkit-keyframes flip-to-square {
+  0% {
+    -webkit-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+  }
+  50%,
+  75% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+  }
+}
+@keyframes flip-to-square {
+  0% {
+    -webkit-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+  }
+  50%,
+  75% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+  }
+}
+
+.flip-to-square {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 60px;
+  width: 60px;
+}
+.flip-to-square div {
+  -webkit-animation: flip-to-square 1.5s calc(var(--delay) * 1s) infinite
+    backwards;
+  animation: flip-to-square 1.5s calc(var(--delay) * 1s) infinite backwards;
+  /* background-color: var(--primary); */
+  background:#9c27b0
+}
+.flip-to-square div:nth-child(1) {
+  --delay: 0.1;
+}
+.flip-to-square div:nth-child(2) {
+  --delay: 0.2;
+}
+.flip-to-square div:nth-child(3) {
+  --delay: 0.3;
+}
+.flip-to-square div:nth-child(4) {
+  --delay: 0.4;
+}
+.flip-to-square div:nth-child(5) {
+  --delay: 0.5;
+}
+.flip-to-square div:nth-child(6) {
+  --delay: 0.6;
+}
+.flip-to-square div:nth-child(7) {
+  --delay: 0.7;
+}
+.flip-to-square div:nth-child(8) {
+  --delay: 0.8;
+}
+.flip-to-square div:nth-child(9) {
+  --delay: 0.9;
+}
+.containerP{
+  width: 100%;
+  /* height: 100%; */
+}
+@media (min-width: 1024px) {
+  .containerP {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1280px) {
+  .containerP {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1536px) {
+  .containerP {
+      max-width: 768px;
+  }
+}
