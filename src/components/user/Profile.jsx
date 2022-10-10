@@ -23,8 +23,8 @@ import { Loader } from "../Loader";
 export const Profile = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const { user,token } = useSelector((state) => state.auth);
   const { images } = useSelector((state) => state.images);
+  const { user,token } = useSelector((state) => state.auth);
 
   useEffect(() => {
     // const token = localStorage.getItem("token");

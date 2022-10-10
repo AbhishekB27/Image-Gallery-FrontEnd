@@ -29,7 +29,7 @@ function App() {
     }
     else {
       console.log(token)
-      navigate('/login')
+      navigate('/')
     }
   }, [token])
   useEffect(() => {

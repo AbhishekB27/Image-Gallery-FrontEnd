@@ -10,8 +10,6 @@ export const EditProfile = () => {
   const {user,token} = useSelector(state => state.auth)
   const {isLoading} = useSelector(state => state.loader)
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    // console.log(token)
     if(!token){
       navigate('/login')
     }
