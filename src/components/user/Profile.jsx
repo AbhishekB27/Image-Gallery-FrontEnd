@@ -23,33 +23,43 @@ import { Loader } from "../Loader";
 export const Profile = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user,token } = useSelector((state) => state.auth);
+  const { images } = useSelector((state) => state.images);
+
+  useEffect(() => {
+    // const token = localStorage.getItem("token");
+    // console.log(token)
+    if(!token){
+      navigate('/login')
+    }
+  }, [token])
+
+  console.log(user.avtar)
   const {isLoading} = useSelector((state) => state.loader)
   const [url, setUrl] = useState({
     avtar: null,
   });
-  const [uAvtar, setAvtar] = useState(user.avtar);
-  const [iFile, setFile] = useState("");
   console.log(url);
   useEffect(() => {
     console.log(url.avtar === null);
     if (url.avtar !== null) {
       console.log(url.avtar);
-      if (url.avtar !== null && url.avtar !== user.avtar) {
-        let imgUrl = user.avtar;
-        const dessertRef = ref(storage, imgUrl);
-        // console.log(deleteObject(dessertRef).exists())
-        deleteObject(dessertRef)
-          .then(() => {
-            console.log("File Delete Successfully");
-            setUrl({
-              avtar:null
-            })
-          })
-          .catch((err) => {
-            alert(err);
-          });
-      }
+      // if (url.avtar !== null && url.avtar !== user.avtar||''||null) {
+      //   let imgUrl = user.avtar;
+      //   console.log(imgUrl);
+      //   const dessertRef = ref(storage, imgUrl);
+      //   // console.log(deleteObject(dessertRef).exists())
+      //   deleteObject(dessertRef)
+      //     .then(() => {
+      //       console.log("File Delete Successfully");
+      //       setUrl({
+      //         avtar:null
+      //       })
+      //     })
+      //     .catch((err) => {
+      //       alert(err);
+      //     });
+      // }
       console.log(url);
       console.log(url.avtar === user.avtar);
       if (url.avtar !== user.avtar) {
@@ -116,7 +126,7 @@ console.log(user.avtar)
            }
             <img
             className="w-full hover:grayscale hover:cursor-pointer h-full object-cover rounded-full"
-            src={url.avtar === null && user.avtar === null ? avtar : user.avtar}
+            src={url.avtar === null && user.avtar === null || user.avtar === '' ? avtar : user.avtar}
             alt=""
           />
             <abbr title="Change Profile">
@@ -183,15 +193,15 @@ console.log(user.avtar)
         </div>
       </div>
       <div className="w-full">
-        <div className="w-full flex justify-start border-b-2 items-start gap-5 md:text-xl">
+        <div className="w-full flex justify-start border-b-2 pb-1 items-start gap-5 md:text-xl">
           <Link to="/userProfile">
-            <button className="outline-none hover:cursor-pointer bg-bottom py-3 px-2 bg-gradient-to-r from-black to-black bg-[length:0%_3px] hover:bg-[length:100%_3px] bg-no-repeat transition-all">
+            <button className="outline-none hover:cursor-pointer bg-bottom py-3 px-2 bg-gradient-to-r from-black to-black dark:from-white dark:to-white bg-[length:0%_3px] hover:bg-[length:100%_3px] bg-no-repeat transition-all">
               {" "}
-              <FontAwesomeIcon icon={faImage} /> Photos 0
+              <FontAwesomeIcon icon={faImage} /> Photos {images.filter(item => item.user._id === user._id).length}
             </button>
           </Link>
           <Link to="/userProfile/collections">
-            <button className="outline-none hover:cursor-pointer bg-bottom py-3 px-2 bg-gradient-to-r from-black to-black bg-[length:0%_3px] hover:bg-[length:100%_3px] bg-no-repeat transition-all">
+            <button className="outline-none hover:cursor-pointer bg-bottom py-3 px-2 bg-gradient-to-r from-black to-black dark:from-white dark:to-white bg-[length:0%_3px] hover:bg-[length:100%_3px] bg-no-repeat transition-all">
               {" "}
               <FontAwesomeIcon icon={faDatabase} /> Collection 0
             </button>

@@ -1,30 +1,44 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import {
-  faHand,
-  faHandHoldingHeart,
-  faRightFromBracket,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { DragNDrop } from "./DragNDrop";
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { setImages } from "../../actions/usersData";
+// import setImages from "../../actions/usersData";
+
 
 export const UploadImg = ({ uModal, setUmodal }) => {
-  const { user } = useSelector((state) => state.auth);
+  const { user,token } = useSelector((state) => state.auth);
   const { isLoading } = useSelector((state) => state.loader);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  useEffect(() => {
+    if(!token){
+      navigate('/login')
+    }
+  }, [token])
   const [imageData, setImageData] = useState({
-    images: "",
+    imgUrls: [],
+    user:user._id
   });
   const handleProfile = () => {
     setUmodal(!uModal);
   };
   const handleImages = () => {
-    console.log(imageData);
+    if(imageData.imgUrls.length > 4){
+      dispatch(setImages(imageData))
+      console.log(imageData);
+    }
+    else{
+      toast.info('Upload Atleast 5 Images',{position:"top-center"})
+    }
   };
   return (
     <motion.div

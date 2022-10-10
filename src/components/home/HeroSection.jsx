@@ -7,7 +7,7 @@ import image from './image';
 
 export const HeroSection = () => {
   const {isLoading} = useSelector(state=>state.loader)
-  console.log(isLoading)
+  // console.log(isLoading)
   const [count, setCount] = useState(0)
   useEffect(() => {
     // console.log(count)
@@ -29,7 +29,7 @@ export const HeroSection = () => {
   },[])
   
   return (
-    <div className='container h-auto c w-full flex flex-col md:flex-row md:justify-center md:items-center border-lime-300'>
+    <div className='container h-auto min-h-[85vh] c w-full flex flex-col md:flex-row md:justify-center md:items-center border-lime-300'>
       <motion.div
       initial={{ opacity: 0, scale: 0.5, }}
       animate={{ opacity: 1, scale: 1 }}

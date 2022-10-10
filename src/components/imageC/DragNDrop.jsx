@@ -6,6 +6,8 @@ import { storage } from "../../firebase/index";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { useEffect } from "react";
 import CloudStorage from "./CloudStorage3D.png";
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const DragNDrop = ({ setImageData }) => {
   const [file, setFiles] = useState([]);
@@ -15,7 +17,7 @@ export const DragNDrop = ({ setImageData }) => {
     console.log(url);
     setImageData((prev) => {
       console.log(prev);
-      return { ...prev, images: url };
+      return { ...prev, imgUrls: url };
     });
   }, [url]);
 
@@ -74,7 +76,11 @@ export const DragNDrop = ({ setImageData }) => {
       return [...prev, ...files];
     });
     // console.log(event.target.files)
-    uploadFile(files);
+    if(files.length > 4){
+      uploadFile(files);
+    }else{
+      toast.info('Upload Atleast 5 Images 😊',{position:'top-center'})
+    }
     // console.log(file[0].name.split('.')[0].slice(0,10) + "."+file[1].name.split('.')[1])
   };
 
@@ -87,7 +93,11 @@ export const DragNDrop = ({ setImageData }) => {
       return [...prev, ...files];
     });
     // console.log(event.target.files)
-    uploadFile(files);
+    if(files.length > 4){
+      uploadFile(files);
+    }else{
+      toast.info('Upload Atleast 5 Images 😊',{position:'top-center'})
+    }
   };
   return (
     <div className="flex flex-col w-full md:flex-col gap-2 justify-center items-center">
@@ -96,7 +106,7 @@ export const DragNDrop = ({ setImageData }) => {
         onDragEnter={dragEnter}
         onDragLeave={dragLeave}
         onDrop={fileDrop}
-        className="relative w-[80%] h-[200px] md:h-[355px] flex flex-col justify-center items-center bg-blue-300/90 rounded-md border-2 border-white border-dashed dark:border-[#edf2f4]"
+        className="relative w-[80%] h-[200px] md:h-[355px] flex flex-col justify-center items-center bg-blue-300/70 rounded-md border-2 border-white border-dashed dark:border-[#edf2f4]"
       >
         <input
           accept="image/*"

@@ -7,9 +7,15 @@ export const EditProfile = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const {userId} = useParams()
-  const {user} = useSelector(state => state.auth)
+  const {user,token} = useSelector(state => state.auth)
   const {isLoading} = useSelector(state => state.loader)
-  // console.log(user.firstName)
+  useEffect(() => {
+    // const token = localStorage.getItem("token");
+    // console.log(token)
+    if(!token){
+      navigate('/login')
+    }
+  }, [token])
   
   
     const [formData, setFormData] = useState({

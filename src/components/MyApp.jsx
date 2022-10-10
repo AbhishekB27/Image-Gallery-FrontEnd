@@ -11,6 +11,7 @@ import { Profile } from "./user/Profile";
 import { Photos } from "./user/Photos";
 import { Collections } from "./user/Collections";
 import { EditProfile } from "./user/EditProfile";
+import { BigImage } from "./imageC/BigImage";
 
 
 export const MyApp = () => {
@@ -48,6 +49,7 @@ export const MyApp = () => {
             <Route path="collections" element={<Collections/>} />
           </Route>
           <Route path="/account/:userId" element={<EditProfile />} />
+          <Route path="/bigImage/:imgId" element={<BigImage />} />
         </Routes>
       </div>
       <Footer />
