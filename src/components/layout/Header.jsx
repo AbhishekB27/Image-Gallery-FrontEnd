@@ -18,6 +18,7 @@ import { UploadImg } from "../imageC/UplaodImg";
 
 export const Header = ({ theme, setTheme }) => {
   const { token,user,authLoaded} =useSelector(state=> state.auth)
+  const {isLoading} = useSelector(state=>state.loader)
     const [toggle, setToggle] = useState(false)
     const [lModal, setlModal] = useState(false)
     const [uModal, setUmodal] = useState(false)
@@ -86,9 +87,9 @@ console.log("lModal: " + lModal)
               onClick={handleProfile}
               whileTap={{scale:0.7}}
               name='logOut'
-              className="px-5 py-1 flex gap-2 justify-between items-center text-lg rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
-                <span className="text-pink-500">
-                {user.email ? user.firstName[0].toUpperCase()+user.lastName[0].toUpperCase(): ''} <FontAwesomeIcon className="text-blue-400" icon={faUserCircle} />{" "}
+              className={` px-5 py-1 flex gap-2 justify-between items-center text-lg rounded-md ${isLoading ? 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md text-transparent' : "dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium "} `}>
+                <span className={`text-pink-500 ${isLoading && "invisible" }`}>
+                {user.email ? user.firstName[0].toUpperCase()+user.lastName[0].toUpperCase(): ''} <FontAwesomeIcon className={`text-blue-400`} icon={faUserCircle} />{" "}
                 </span>{" "}
                 {/* <span className="text-base">
                   {" "}
@@ -99,9 +100,9 @@ console.log("lModal: " + lModal)
               onClick={handleLogOut}
               whileTap={{scale:0.7}}
               name='upload'
-              className="px-5 py-1 flex gap-2 justify-between items-center text-lg rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
+              className={`px-5 py-1 flex gap-2 justify-between items-center text-lg rounded-md ${isLoading ? 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md text-transparent' : "dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium "}`}>
                 Upload
-                <FontAwesomeIcon icon={faUpload}/>
+                <FontAwesomeIcon className={`${isLoading && "invisible" }`} icon={faUpload}/>
               </motion.button>
               </div>
             )}{" "}

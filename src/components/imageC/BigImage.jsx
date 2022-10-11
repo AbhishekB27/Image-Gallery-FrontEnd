@@ -80,7 +80,7 @@ useEffect(() => {
               <div className="relative md:w-[3.5rem] w-[2rem] md:h-[3.5rem] h-[2rem] rounded-full">
                 <img
                   className="w-full hover:grayscale h-full object-cover rounded-full"
-                  src={user.avtar === null || "" ? avtar : user.avtar}
+                  src={selectedImage[0].imageUrl === undefined || '' || null ? avtar : selectedImage[0].user.avtar}
                   alt=""
                 />
               </div>

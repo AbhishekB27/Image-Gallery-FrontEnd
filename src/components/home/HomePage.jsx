@@ -13,7 +13,7 @@ export const HomePage = () => {
   // })
   // console.log("hello");
   return (
-    <div className="flex flex-col space-y-8 justify-center items-center">
+    <div className="container flex flex-col space-y-8 justify-center items-center">
       <HeroSection />
       <div className="w-full grid place-items-center border-yellow-200">
         {images.length === 0 ? (
