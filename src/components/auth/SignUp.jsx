@@ -15,7 +15,7 @@ export const SignUp = () => {
   const [toggle, setToggle] = useState(false);
   const handleSubmit = (data) => {
     dispatch(signUpUser(data))
-    console.log(data);
+    // console.log(data);
   };
   const initialValues = {
     userName: "",

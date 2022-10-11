@@ -24,7 +24,7 @@ export const Login = () => {
   }, [token])
   const [toggle, setToggle] = useState(false);
   const handleSubmit = (data) => {
-      console.log(data);
+      // console.log(data);
     dispatch(loginUser(data))
   };
   const initialValues = {

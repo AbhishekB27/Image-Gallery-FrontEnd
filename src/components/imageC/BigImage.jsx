@@ -49,6 +49,7 @@ useEffect(() => {
               className="md:text-2xl cursor-pointer text-lg text-black px-2 py-1"
               icon={faTimes}
             />{" "}
+            jhjkh
           </motion.div>{" "}
         </div>
         <div className="container grid place-items-center gap-3">
