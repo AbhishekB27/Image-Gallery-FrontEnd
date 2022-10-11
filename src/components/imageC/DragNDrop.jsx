@@ -14,9 +14,9 @@ export const DragNDrop = ({ setImageData }) => {
   const [url, setUrl] = useState([]);
   const [prog, setProgress] = useState(null);
   useEffect(() => {
-    console.log(url);
+    // console.log(url);
     setImageData((prev) => {
-      console.log(prev);
+      // console.log(prev);
       return { ...prev, imgUrls: url };
     });
   }, [url]);
@@ -24,7 +24,7 @@ export const DragNDrop = ({ setImageData }) => {
   const uploadFile = (data) => {
     try {
       data.map((item) => {
-        console.log(item);
+        // console.log(item);
         const storageRef = ref(storage, `images/${item.name}`);
         const uploadTask = uploadBytesResumable(storageRef, item);
         uploadTask.on(
@@ -40,7 +40,7 @@ export const DragNDrop = ({ setImageData }) => {
           },
           async () => {
             const urlData = await getDownloadURL(uploadTask.snapshot.ref);
-            console.log(urlData);
+            // console.log(urlData);
             // setUrl([])
             setUrl((prev) => {
               return [...prev, urlData]; // This is useful for multiple images
@@ -51,7 +51,7 @@ export const DragNDrop = ({ setImageData }) => {
         );
       });
     } catch (error) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
   const dragOver = (event) => {

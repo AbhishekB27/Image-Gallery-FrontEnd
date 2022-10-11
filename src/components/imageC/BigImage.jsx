@@ -28,7 +28,7 @@ useEffect(() => {
   }
 }, [token])
 
-  console.log(images, review);
+  // console.log(images, review);
   const [iReveiw, setReveiw] = useState("");
   const dispatch = useDispatch()
   const handleReview = (event) => {

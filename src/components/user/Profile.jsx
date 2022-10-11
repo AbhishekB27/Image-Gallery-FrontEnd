@@ -34,16 +34,16 @@ export const Profile = () => {
     }
   }, [token])
 
-  console.log(user.avtar)
+  // console.log(user.avtar)
   const {isLoading} = useSelector((state) => state.loader)
   const [url, setUrl] = useState({
     avtar: null,
   });
-  console.log(url);
+  // console.log(url);
   useEffect(() => {
-    console.log(url.avtar === null);
+    // console.log(url.avtar === null);
     if (url.avtar !== null) {
-      console.log(url.avtar);
+      // console.log(url.avtar);
       // if (url.avtar !== null && url.avtar !== user.avtar||''||null) {
       //   let imgUrl = user.avtar;
       //   console.log(imgUrl);

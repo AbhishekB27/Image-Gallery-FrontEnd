@@ -34,7 +34,7 @@ export const EditProfile = () => {
         id:userId
     })
      },[])
-    console.log(formData)
+    // console.log(formData)
     const handleInput = (event) => {
         const name = event.target.name
         const value = event.target.value
@@ -46,7 +46,7 @@ export const EditProfile = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         dispatch(updateUser(formData))
-        console.log(formData)
+        // console.log(formData)
     }
   return (
     <div class="flex items-center justify-center p-12">

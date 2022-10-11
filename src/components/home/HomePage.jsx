@@ -11,7 +11,7 @@ export const HomePage = () => {
   // images.map(item=>{
   //   console.log(item.imageUrl)
   // })
-  console.log("hello");
+  // console.log("hello");
   return (
     <div className="flex flex-col space-y-8 justify-center items-center">
       <HeroSection />

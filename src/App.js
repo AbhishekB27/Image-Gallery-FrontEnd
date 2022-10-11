@@ -21,21 +21,21 @@ function App() {
   const {token,user} = useSelector(state => state.auth)
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token)
+    // console.log(token)
     if(token != null){
-      console.log("run")
+      // console.log("run")
       dispatch(verifyToken(token))
       // console.log(user.email)
     }
     else {
-      console.log(token)
+      // console.log(token)
       navigate('/')
     }
   }, [token])
   useEffect(() => {
     const token = localStorage.getItem("token");
     if(token != null){
-      console.log("run")
+      // console.log("run")
       dispatch(getAllImages())
     }
   }, [token])

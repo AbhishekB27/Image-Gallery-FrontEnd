@@ -34,7 +34,7 @@ export const UploadImg = ({ uModal, setUmodal }) => {
   const handleImages = () => {
     if(imageData.imgUrls.length > 4){
       dispatch(setImages(imageData))
-      console.log(imageData);
+      // console.log(imageData);
     }
     else{
       toast.info('Upload Atleast 5 Images',{position:"top-center"})
