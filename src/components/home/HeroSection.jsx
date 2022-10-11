@@ -20,13 +20,14 @@ export const HeroSection = () => {
   
     return () => clearInterval(intervalId);
   }, [count]);
-  const [isLoad, setLoading] = useState(true)
-  useEffect(() => {
-    // setLoading(isLoading)
-    setTimeout(() => {
-      setLoading(!isLoad)
-    }, 1800);
-  },[])
+  const [isLoad, setLoading] = useState(isLoading)
+  console.log(isLoading)
+  // useEffect(() => {
+  //   // setLoading(isLoading)
+  //   setTimeout(() => {
+  //     setLoading(!isLoad)
+  //   }, 1800);
+  // },[])
   
   return (
     <div className='container h-auto min-h-[85vh] c w-full flex flex-col md:flex-row md:justify-center md:items-center border-lime-300'>

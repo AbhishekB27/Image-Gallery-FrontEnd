@@ -11,24 +11,24 @@ import { useDispatch, useSelector } from "react-redux";
 import avtar from "./UserAvtar.jpg";
 import noReview from "./NoReview.png";
 import { faSmile, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { setReviewWithImage } from "../../actions/usersData";
 
 export const BigImage = () => {
   const { user,token } = useSelector((state) => state.auth);
   const { images, review } = useSelector((state) => state.images);
   const navigate = useNavigate()
+  const [big, setBig] = useState(false)
   const {imgId} = useParams()
+  window.scrollTo(0, 0)
   const selectedImage = images.filter(item => item._id === imgId)
   const createdDate = selectedImage.length !== 0 ? new Date(selectedImage[0].created) : '10-10-2022'
-  // console.log(createdDate.toUTCString())
 useEffect(() => {
   if(!token){
     navigate('/login')
   }
 }, [token])
 
-  // console.log(images, review);
   const [iReveiw, setReveiw] = useState("");
   const dispatch = useDispatch()
   const handleReview = (event) => {
@@ -38,28 +38,36 @@ useEffect(() => {
   const uploadReview = ()=>{
     dispatch(setReviewWithImage({review,id:imgId}))
   }
+  const removeBig = ()=>{
+    setBig(!big)
+    navigate('/')
+  }
   return (
     <AnimatePresence>
-      <div className="absolute flex px-2 py-2 flex-col justify-start items-center top-[0] w-full min-h-screen h-auto bg-white/95 z-10">
+      <motion.div
+       initial={{ opacity: 0, scale: 0.5 }}
+       animate={{ opacity: 1, scale: 1 }}
+       exit={{opacity: 0, scale:0.5}}
+       transition={{ duration: 0.3 }}
+      className={`absolute flex px-2 py-2 flex-col justify-start items-center top-[0] w-full min-h-screen h-auto bg-white/95 z-10 ${big && "hidden"}`}>
         <div className="w-full">
           {" "}
-          <motion.div className="w-fit h-fit" whileTap={{ scale: 0.7 }}>
+          <motion.div onClick={removeBig} className={`w-fit h-fit`} whileTap={{ scale: 0.7 }}>
             {" "}
             <FontAwesomeIcon
               className="md:text-2xl cursor-pointer text-lg text-black px-2 py-1"
               icon={faTimes}
-            />{" "}
-            jhjkh
+            />
           </motion.div>{" "}
         </div>
         <div className="container grid place-items-center gap-3">
-          <div className="relative w-full max-w-[45rem]">
+          <div className="relative w-full max-w-[45rem] h-[40rem]">
             <img
-              className="object-cover peer object-center"
+              className="object-cover peer object-center w-full h-full"
               src={selectedImage[0].imageUrl}
               alt=""
             />
-            <div className="flex gap-2  hover:cursor-pointer peer-hover:opacity-100 hover:opacity-100 opacity-0 overflow-hidden absolute w-full bottom-0 md:text-2xl text-lg font-normal text-white p-1 justify-start items-center transition-all duration-100 ease-linear bg-gradient-to-t from-black/50 via-gray-400/5 to-black/50">
+            <div className="flex gap-2  hover:cursor-pointer peer-hover:opacity-100 hover:opacity-100 opacity-0 overflow-hidden absolute w-full bottom-0 md:text-2xl text-lg font-normal text-white p-1 justify-start items-center transition-all duration-100 ease-linear bg-black/50">
               <div className="relative md:w-[3.5rem] w-[2rem] md:h-[3.5rem] h-[2rem] rounded-full">
                 <img
                   className="w-full hover:grayscale h-full object-cover rounded-full"
@@ -117,7 +125,7 @@ useEffect(() => {
                 No Reviews
               </div>
             ) : (
-              review.map((item) => {
+              selectedImage[0].review.map((item) => {
                 return (
                   <div className="w-full md:w-[68%] border-2 border-slate-400 rounded-md p-1">
                     <div className="flex gap-2 text-black justify-start items-center">
@@ -128,11 +136,11 @@ useEffect(() => {
                           alt=""
                         />
                       </div>
-                      Abhishek Bahuguna
+                     {selectedImage[0].user.userName}
                     </div>
                     <div>
                       {" "}
-                      This is awesome image.I never see like it before{" "}
+                      {item.review}{" "}
                     </div>
                     <div className="flex justify-start items-center gap-10">
                       {" "}
@@ -151,7 +159,7 @@ useEffect(() => {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </AnimatePresence>
   );
 };

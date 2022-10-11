@@ -25,13 +25,12 @@ export const HomePage = () => {
           <div className="2xl:w-[1535px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border-yellow-200">
             {images.map((item) => {
               return (
-                <Link to={`/bigImage/${item._id}`}>
                   <ImageCard
+                    itemId={item._id}
                     imgUrl={item.imageUrl}
                     userName={item.user.userName}
                     userAvtar={item.user.avtar}
                   />
-                </Link>
               );
             })}
           </div>

@@ -9,23 +9,21 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import avtar from "./UserAvtar.jpg";
+import { Link } from "react-router-dom";
 
-export const ImageCard = ({ imgUrl,userName,userAvtar }) => {
-  // console.log(imageUrl)
+export const ImageCard = ({itemId, imgUrl,userName,userAvtar }) => {
+  // console.log("hello")
 
   // const { user } = useSelector((state) => state.auth);
   return (
     <div class={`relative overflow-hidden`}>
-      {" "}
-      {/* w-[25.80rem] */}
+       <Link className="peer" to={`/bigImage/${itemId}`}>
       <img
         class={`object-cover object-center w-full h-[380px]`}
-        src={
-          imgUrl === "" || null || undefined ? 'https://www.kindacode.com/wp-content/uploads/2022/06/big-boss.jpeg': imgUrl
-        }
+        src={ imgUrl  }
       />
-      <div class="absolute flex justify-between flex-col bottom-0 left-0 right-0 w-full h-full opacity-0 overflow-hidden hover:opacity-100 cursor-pointer transition-all duration-100 ease-linear bg-gradient-to-t from-black/50 via-gray-400/5 to-black/50">
-        <div className="w-full flex justify-end items-center gap-2 px-2 py-1 text-sm md:text-lg">
+      </Link>
+      <div className="absolute top-0 z-10 bg-black/50 peer-hover:translate-y-0 hover:translate-y-0 translate-y-[-100%] transition-all w-full flex justify-end items-center gap-2 px-2 py-1 text-sm md:text-lg">
           <abbr title="Like">
             <motion.button
               whileTap={{ scale: 0.7 }}
@@ -45,7 +43,7 @@ export const ImageCard = ({ imgUrl,userName,userAvtar }) => {
             </motion.button>
           </abbr>
         </div>
-        <div className="w-full flex justify-between items-center gap-2 px-2 py-1 text-sm md:text-lg">
+        <div className="w-full absolute z-10  bg-black/50 peer-hover:translate-y-0 hover:translate-y-0 translate-y-[100%] transition-all  bottom-0 flex justify-between items-center gap-2 px-2 py-1 text-sm md:text-lg">
           <motion.div
             whileTap={{ scale: 0.7 }}
             className="flex gap-2 text-white justify-start items-center"
@@ -71,7 +69,7 @@ export const ImageCard = ({ imgUrl,userName,userAvtar }) => {
           </abbr>
           </a>
         </div>
-      </div>
+     
     </div>
   );
 };
