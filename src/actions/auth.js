@@ -12,7 +12,7 @@ export const loginUser = ({email,password})=>async(dispatch)=>{
             email,password
         })
 
-        console.log(res)
+        // console.log(res)
                 const {status,data,message} = res.data
 
         if(status === 'Success') {
@@ -57,13 +57,13 @@ const verifyToken = (token)=> async dispatch =>{
             type:'LOAD_USER',
             payload: {...data}
         })
-        console.log(res.data)
+        // console.log(res.data)
     }
     else{
         
         toast.info(message,{position:"top-center"})
         localStorage.clear('token')
-        console.log(message)
+        // console.log(message)
     }
    } catch (error) {
     toast.error(error.message,{position:"top-center"})
@@ -105,7 +105,7 @@ export const signUpUser = ({avtar,userName,firstName,lastName,email,password,con
             avtar,userName,firstName,lastName,email,password,confirmPassword
         }) 
         const {status,data,message} = res.data
-        console.log(res.data)
+        // console.log(res.data)
         if(status === 'Success'){
             toast.success(message,{position:"top-center"})
             dispatch({
@@ -135,7 +135,7 @@ export const signUpUser = ({avtar,userName,firstName,lastName,email,password,con
 }
 
 export const updateUser = (updatedData)=> async(dispatch)=>{
-    console.log(updatedData)
+    // console.log(updatedData)
     try {
         dispatch({
             type:'SET_LOADING',

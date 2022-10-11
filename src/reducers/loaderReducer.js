@@ -6,7 +6,7 @@ const loaderReducer = (state = initialState,action)=>{
     const {type,payload} = action
     switch(type){
         case 'SET_LOADING':
-            console.log(action)
+            // console.log(action)
             return{
                 ...state,
                isLoading:payload.state
