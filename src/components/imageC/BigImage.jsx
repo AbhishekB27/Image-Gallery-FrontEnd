@@ -13,34 +13,43 @@ import noReview from "./NoReview.png";
 import { faSmile, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { setReviewWithImage } from "../../actions/usersData";
+import { uploadUserReview } from "../../actions/review";
+import { useHistory } from "react-router-dom";
 
 export const BigImage = () => {
   const { user,token } = useSelector((state) => state.auth);
-  const { images, review } = useSelector((state) => state.images);
+  const { images} = useSelector((state) => state.images);
+  const {reviews} = useSelector((state) => state.reviews);
+  const {isLoading} = useSelector((state) => state.loader);
   const navigate = useNavigate()
   const [big, setBig] = useState(false)
   const {imgId} = useParams()
-  window.scrollTo(0, 0)
   const selectedImage = images.filter(item => item._id === imgId)
   const createdDate = selectedImage.length !== 0 ? new Date(selectedImage[0].created) : '10-10-2022'
-useEffect(() => {
+  
+  useEffect(() => {
   if(!token){
     navigate('/login')
   }
 }, [token])
 
-  const [iReveiw, setReveiw] = useState("");
+useEffect(() => {
+  window.scrollTo(0, 0)
+}, [])
+  const [review, setReveiw] = useState("");
   const dispatch = useDispatch()
   const handleReview = (event) => {
     const value = event.target.value;
     setReveiw(value);
   };
+  console.log(review)
   const uploadReview = ()=>{
-    dispatch(setReviewWithImage({review,id:imgId}))
+    const stars = 4
+    dispatch(uploadUserReview({stars,review,imgId,userId:user._id}))
   }
   const removeBig = ()=>{
     setBig(!big)
-    navigate('/')
+    navigate(-1)
   }
   return (
     <AnimatePresence>
@@ -61,10 +70,10 @@ useEffect(() => {
           </motion.div>{" "}
         </div>
         <div className="container grid place-items-center gap-3">
-          <div className="relative w-full max-w-[45rem] h-[40rem]">
+          <div className={`relative w-full max-w-[45rem] h-[40rem] ${selectedImage[0].imageUrl === undefined || '' || null && "bg-slate-400 animate-pulse"}`}>
             <img
               className="object-cover peer object-center w-full h-full"
-              src={selectedImage[0].imageUrl}
+              src={selectedImage[0].imageUrl === undefined || '' || null ? '' : selectedImage[0].imageUrl }
               alt=""
             />
             <div className="flex gap-2  hover:cursor-pointer peer-hover:opacity-100 hover:opacity-100 opacity-0 overflow-hidden absolute w-full bottom-0 md:text-2xl text-lg font-normal text-white p-1 justify-start items-center transition-all duration-100 ease-linear bg-black/50">
@@ -97,8 +106,9 @@ useEffect(() => {
             <div className="flex flex-col w-full md:w-[68%] gap-3">
               <textarea
                 onChange={handleReview}
-                value={iReveiw}
-                className="resize-none placeholder:text-slate-900 placeholder:font-medium border-2 border-slate-700 px-2 py-1 outline-none rounded-md"
+                disabled={isLoading ? true : false}
+                value={review}
+                className={`${isLoading && "cursor-not-allowed"} resize-none placeholder:text-slate-900 placeholder:font-medium border-2 border-slate-700 px-2 py-1 outline-none rounded-md`}
                 name=""
                 id=""
                 placeholder="Add Review"
@@ -108,14 +118,15 @@ useEffect(() => {
               <motion.button
               onClick={uploadReview}
                 whileTap={{ scale: 0.7 }}
-                className="px-4 py-2 bg-slate-300 rounded-md"
+                class="hover:shadow-form grid place-items-center h-[45px] w-full rounded-md bg-[#6A64F1] py-1 px-8 text-base font-semibold text-white outline-none"
               >
-                Upload
+                            {isLoading ? <div className="w-[35px] h-[35px] animate-spin rounded-full border-[5px] border-t-slate-300 border-slate-600"></div> : 'Upload'}
+
               </motion.button>
             </div>
           </div>
           <div className="w-full border-t-2 border-slate-400 pt-2 flex flex-col gap-3 justify-center items-center">
-            {selectedImage[0].review.length === 0 ? (
+            {reviews.length === 0 ? (
               <div className="text-center text-base text-black md:text-2xl">
                 <img
                   className="object-cover h-fit object-center"
@@ -125,18 +136,18 @@ useEffect(() => {
                 No Reviews
               </div>
             ) : (
-              selectedImage[0].review.map((item) => {
+              reviews.filter(i => i.imgId === imgId).map((item) => {
                 return (
                   <div className="w-full md:w-[68%] border-2 border-slate-400 rounded-md p-1">
                     <div className="flex gap-2 text-black justify-start items-center">
                       <div className="relative w-[3rem] h-[3rem] rounded-full">
                         <img
                           className="w-full hover:grayscale hover:cursor-pointer h-full object-cover rounded-full"
-                          src={user.avtar === null || "" ? avtar : user.avtar}
+                          src={item.user.avtar === null || "" ? avtar : item.user.avtar}
                           alt=""
                         />
                       </div>
-                     {selectedImage[0].user.userName}
+                     {item.user.userName}
                     </div>
                     <div>
                       {" "}

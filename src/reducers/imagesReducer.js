@@ -1,20 +1,22 @@
 const initialState = {
-  images: [],
+  images: [
+    {
+      imageUrl:'',
+      user:{
+        userName:'',
+        email:''
+      }
+    }
+  ],
 };
 
 const imagesReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case "SET_IMAGE_LOADED":
-      return {
-        ...state,
-        authLoaded: true,
-      };
     case "LOAD_IMAGES":
       return {
         ...state,
         images: payload,
-        imageLoaded: true,
       }
       case "UPLOAD_SUCCESS":
         return {

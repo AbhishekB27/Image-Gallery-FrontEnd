@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import auth from "./authReducer";
 import loader from "./loaderReducer"
-// import userData  from './userDataReducer'
-import images from './imagesReducer'         
+import images from './imagesReducer'   
+import reviews from './reviewReducer'      
 export default combineReducers({
     loader,
     auth,
-    // userData,
-    images
+    images,
+    reviews
 })

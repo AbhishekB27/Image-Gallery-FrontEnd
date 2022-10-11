@@ -49,7 +49,7 @@ export const setImages = ({ imgUrls ,user }) => async(dispatch) => {
 }
 
 //Route for createing a new review and updating a image 'review' field with it
-export const setReviewWithImage =({id, review},stars=4) => async (dispatch)=>{
+export const setReviewWithImage =({stars,review,id}) => async (dispatch)=>{
   try {
     dispatch({
       type: "SET_LOADING",
