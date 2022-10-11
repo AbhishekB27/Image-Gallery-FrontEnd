@@ -16,9 +16,19 @@ export const Photos = () => {
         </div>
       ) : (
         <div className="2xl:w-[1535px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border-yellow-200">
-          {images.filter(item=> item.user._id === user._id ).map((item) => {
-            return <ImageCard imgUrl={item.imageUrl} userName={item.user.userName} userAvtar={item.user.avtar} />
-          })}
+          {images
+            .filter((item) => item.user._id === user._id)
+            .map((item) => {
+              console.log(item._id)
+              return (
+                <ImageCard
+                  itemId={item._id}
+                  imgUrl={item.imageUrl}
+                  userName={item.user.userName}
+                  userAvtar={item.user.avtar}
+                />
+              );
+            })}
         </div>
       )}
     </div>

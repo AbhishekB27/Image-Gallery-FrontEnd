@@ -34,6 +34,7 @@ export const DragNDrop = ({ setImageData }) => {
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             );
             setProgress(progress);
+            console.log(progress)
           },
           (error) => {
             alert(error);

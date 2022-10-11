@@ -50,6 +50,7 @@ export const MyApp = () => {
           </Route>
           <Route path="/account/:userId" element={<EditProfile />} />
           <Route path="/bigImage/:imgId" element={<BigImage />} />
+          <Route path="userProfile/bigImage/:imgId" element={<BigImage />} />
         </Routes>
       </div>
       <Footer />
