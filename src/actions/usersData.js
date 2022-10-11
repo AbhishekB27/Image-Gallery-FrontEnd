@@ -11,8 +11,7 @@ export const setImages = ({ imgUrls ,user }) => async(dispatch) => {
       payload: { state: true },
     });
     console.log("Hello" + " : " + authHeader());
-    const imageData = await axios.post(
-      "http://localhost:8080/api/v1/images/upload",
+    const imageData = await axiosI.post("/images/upload",
       {
         imgUrls,
         user,
