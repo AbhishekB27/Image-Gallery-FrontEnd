@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 // import { loadCart } from "./actions/cart";
 // import { getProducts } from "./actions/product";
 import verifyToken from "./actions/auth";
+import { getReview } from "./actions/review";
 import { getAllImages } from "./actions/usersData";
 
 import "./App.css";
@@ -37,6 +38,7 @@ function App() {
     if(token != null){
       // console.log("run")
       dispatch(getAllImages())
+      dispatch(getReview())
     }
   }, [token])
   
