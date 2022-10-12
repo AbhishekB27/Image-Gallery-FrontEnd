@@ -6,14 +6,12 @@ import {
   faUserCircle,
 } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTruckFast, faChevronDown, faIndianRupeeSign, faCameraAlt, faUpload } from "@fortawesome/free-solid-svg-icons";
-import logo from "./images/logo.png";
+import {faCameraAlt, faUpload, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { AnimatePresence, motion } from "framer-motion";
 import { Hamburger } from "./Hamburger";
 import { Link} from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ProfileLogout } from "./ProfileLogout";
-import { useEffect } from "react";
 import { UploadImg } from "../imageC/UplaodImg";
 
 export const Header = ({ theme, setTheme }) => {
@@ -22,7 +20,7 @@ export const Header = ({ theme, setTheme }) => {
     const [toggle, setToggle] = useState(false)
     const [lModal, setlModal] = useState(false)
     const [uModal, setUmodal] = useState(false)
-console.log("lModal: " + lModal)
+// console.log("lModal: " + lModal)
     const handleMode = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
@@ -83,6 +81,16 @@ console.log("lModal: " + lModal)
               </>
             ) : (
               <div className="flex gap-2">
+                  <motion.button
+              whileTap={{scale:0.7}}
+              name='logOut'
+              className={` px-5 py-1 flex gap-2 justify-between items-center text-lg rounded-md ${isLoading ? 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md text-transparent' : "dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium "} `}>
+                <span className={`text-pink-500 ${isLoading && "invisible" }`}>
+                <FontAwesomeIcon className={`text-blue-400`} icon={faUsers} />{" "}
+                </span>{" "}
+                
+              </motion.button>
+
                 <motion.button
               onClick={handleProfile}
               whileTap={{scale:0.7}}
@@ -91,10 +99,7 @@ console.log("lModal: " + lModal)
                 <span className={`text-pink-500 ${isLoading && "invisible" }`}>
                 {user.email ? user.firstName[0].toUpperCase()+user.lastName[0].toUpperCase(): ''} <FontAwesomeIcon className={`text-blue-400`} icon={faUserCircle} />{" "}
                 </span>{" "}
-                {/* <span className="text-base">
-                  {" "}
-                  <FontAwesomeIcon icon={faChevronDown} />{" "}
-                </span> */}
+                
               </motion.button>
               <motion.button
               onClick={handleLogOut}

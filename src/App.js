@@ -24,8 +24,10 @@ function App() {
     const token = localStorage.getItem("token");
     // console.log(token)
     if(token != null){
-      // console.log("run")
+      console.log("run")
       dispatch(verifyToken(token))
+      dispatch(getAllImages())
+      dispatch(getReview())
       // console.log(user.email)
     }
     else {
@@ -33,14 +35,14 @@ function App() {
       navigate('/')
     }
   }, [token])
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if(token != null){
-      // console.log("run")
-      dispatch(getAllImages())
-      dispatch(getReview())
-    }
-  }, [token])
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if(token != null){
+  //     console.log("run")
+  //     dispatch(getAllImages())
+  //     dispatch(getReview())
+  //   }
+  // }, [token])
   
   
   return (

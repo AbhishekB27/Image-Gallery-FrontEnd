@@ -137,8 +137,8 @@ useEffect(() => {
             ) : (
               reviews.filter(i => i.imgId === imgId).map((item) => {
                 return (
-                  <div className="w-full md:w-[68%] border-2 border-slate-400 rounded-md p-1">
-                    <div className="flex gap-2 text-black justify-start items-center">
+                  <div className="w-full md:w-[68%] border-2 text-black border-slate-400 rounded-md p-1">
+                    <div className="flex gap-2 justify-start items-center">
                       <div className="relative w-[3rem] h-[3rem] rounded-full">
                         <img
                           className="w-full hover:grayscale hover:cursor-pointer h-full object-cover rounded-full"

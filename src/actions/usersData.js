@@ -119,7 +119,7 @@ export const getAllImages = () => async(dispatch)=> {
     const { status, data, message } = imageData.data;
 
     if (status === "Success") {
-      toast.success(message, { position: "top-center" });
+      // toast.success(message, { position: "top-center" });
       // const filterData = data.filter(item => item.user._id === user.id);
       if(data.length === 0){
           console.log(...data)
@@ -150,13 +150,3 @@ export const getAllImages = () => async(dispatch)=> {
     });
   }
 };
-// export default getAllImages
-// export default setImages
-
-// export default {
-//   setImages,
-//   getAllImages,
-//   // setLike,
-//   setReviewWithImage,
-//   // getImageWithReview,
-// };

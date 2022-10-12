@@ -48,7 +48,7 @@ export const getReview = ()=> async(dispatch)=> {
         const res = await axiosI.get('/reviews/all')
         const {status, data, message} = res.data
         if (status === 'Success'){
-            toast.success(message, { position: "top-center" })
+            // toast.success(message, { position: "top-center" })
             dispatch({
                 type:'LOAD_REVIEWS',
                 payload: [...data] 

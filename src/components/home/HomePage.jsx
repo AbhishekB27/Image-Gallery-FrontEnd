@@ -1,41 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { ImageCard } from "../imageC/ImageCard";
 import { HeroSection } from "./HeroSection";
-import noImage from "./images/NoImage.png";
+import { PhotoSection } from "./PhotoSection";
 
 export const HomePage = () => {
-  const { images } = useSelector((state) => state.images);
-  // console.log(images)
-  // images.map(item=>{
-  //   console.log(item.imageUrl)
-  // })
-  // console.log("hello");
+  
+
   return (
     <div className="container flex flex-col space-y-8 justify-center items-center">
       <HeroSection />
-      <div className="w-full grid place-items-center border-yellow-200">
-        {images.length === 0 ? (
-          <div className="text-center text-gray-700 dark:text-gray-300 font-ubuntu md:text-3xl text-lg">
-            <img className="object-cover object-center" src={noImage} alt="" />
-            No Images
-          </div>
-        ) : (
-          <div className="2xl:w-[1535px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border-yellow-200">
-            {images.map((item) => {
-              return (
-                  <ImageCard
-                    itemId={item._id}
-                    imgUrl={item.imageUrl}
-                    userName={item.user.userName}
-                    userAvtar={item.user.avtar}
-                  />
-              );
-            })}
-          </div>
-        )}
-      </div>
+      <PhotoSection/>
+      {/* <img class="YVj9w" alt="living room set with green dumb cane plant" sizes="(min-width: 1335px) 416px, (min-width: 992px) calc(calc(100vw - 72px) / 3), (min-width: 768px) calc(calc(100vw - 48px) / 2), 100vw" srcset="https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=100&amp;q=60 100w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60 200w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=300&amp;q=60 300w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=60 400w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60 500w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60 600w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=60 700w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60 800w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60 900w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=60 1000w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=1100&amp;q=60 1100w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=1200&amp;q=60 1200w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=1296&amp;q=60 1296w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=1400&amp;q=60 1400w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=60 1600w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=1800&amp;q=60 1800w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=60 2000w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=2200&amp;q=60 2200w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=2400&amp;q=60 2400w, https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=2592&amp;q=60 2592w" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&amp;w=1000&amp;q=80" itemprop="thumbnailUrl" data-perf="eager-loaded-img" data-test="photo-grid-single-col-img"></img> */}
     </div>
   );
 };

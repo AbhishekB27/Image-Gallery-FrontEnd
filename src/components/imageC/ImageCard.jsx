@@ -11,15 +11,15 @@ import { useSelector } from "react-redux";
 import avtar from "./UserAvtar.jpg";
 import { Link } from "react-router-dom";
 
-export const ImageCard = ({itemId, imgUrl,userName,userAvtar }) => {
-  // console.log("hello")
+export const ImageCard = ({grdCls,itemId, imgUrl,userName,userAvtar }) => {
 
   // const { user } = useSelector((state) => state.auth);
+  // console.log(imgUrl === '')
   return (
-    <div class={`relative overflow-hidden`}>
-       <Link className="peer" to={`/bigImage/${itemId}`}>
+    <div class={`relative overflow-hidden w-full h-full ${grdCls}`}>
+       <Link className="peer " to={`/bigImage/${itemId}`}>
       <img
-        class={`object-cover object-center w-full h-[380px]`}
+        class={`${imgUrl === '' && "invisible"} w-full h-full object-cover object-[50%_50%] hover:scale-110 transition-all`}
         src={ imgUrl  }
       />
       </Link>
