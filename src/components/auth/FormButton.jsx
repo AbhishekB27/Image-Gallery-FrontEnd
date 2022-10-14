@@ -2,8 +2,10 @@ import React from "react";
 import { Field, ErrorMessage } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 export const FormButton = ({btnName}) => {
+  const {isLoading} = useSelector(state => state.loader)
   return (
     <div className="flex flex-col">
       <div className="">
@@ -25,10 +27,12 @@ export const FormButton = ({btnName}) => {
         </div>
       </div>
 
-      <div className="">
-        <button className={`relative bg-blue-600 px-2 font-medium py-1 rounded-md`} type="submit">
+      <div className=" w-full h-full flex justify-center items-center">
+        {
+          isLoading ? <div className="spinner"></div> : <button className={`relative  bg-blue-600 px-2 w-full h-full font-medium py-1 rounded-md`} type="submit">
           {btnName}
         </button>
+        }
       </div>
     </div>
   );

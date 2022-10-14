@@ -133,7 +133,7 @@ export const DragNDrop = ({ setImageData }) => {
           className="absolute cursor-pointer h-full w-full opacity-0"
         />
         <img
-          className="w-[320px] hidden md:flex animate-bounce h-[220px]"
+          className="w-[300px] hidden md:flex animate-bounce h-[200px]"
           src={CloudStorage}
           alt=""
         />
@@ -151,7 +151,7 @@ export const DragNDrop = ({ setImageData }) => {
         <span className="px-3 font-medium">Images:</span>
         <div className="relative flex flex-col gap-1 justify-center items-center rounded-md w-full max-h-[36px] overflow-hidden border-2  border-green-600">
           <span className="float-right z-10">{count*20 === 100 ? 'Completed' : count*20 + '%' }</span>
-          <div className={`absolute self-start w-[${count*20}%] h-full overflow-x-hidden transition-all bg-green-400 text-center`}></div>
+          <div className={`absolute self-start w-[${count*20}%] ${count*20 !== 100 && "animate-pulse"} h-full overflow-x-hidden transition-all bg-green-400 text-center`}></div>
         </div>
         <span className="text-xs pl-[10px]">Total: {url.length} </span>
       </div>
