@@ -16,14 +16,14 @@ export const ImageCard = ({grdCls,itemId, imgUrl,userName,userAvtar }) => {
   // const { user } = useSelector((state) => state.auth);
   // console.log(imgUrl === '')
   return (
-    <div class={`relative overflow-hidden w-full h-full ${grdCls}`}>
+    <div class={`relative rounded-md overflow-hidden w-full h-full ${grdCls}`}>
        <Link className="peer " to={`/bigImage/${itemId}`}>
       <img
-        class={`${imgUrl === '' && "invisible"} w-full h-full object-cover object-[50%_50%] hover:scale-110 transition-all`}
+        class={`${imgUrl === '' && "invisible"} w-full h-full object-cover object-[50%_50%] md:hover:scale-110 md:transition-all`}
         src={ imgUrl  }
       />
       </Link>
-      <div className="absolute top-0 z-10 bg-black/50 peer-hover:translate-y-0 hover:translate-y-0 translate-y-[-100%] transition-all w-full flex justify-end items-center gap-2 px-2 py-1 text-sm md:text-lg">
+      <div className="absolute top-0 z-10 translate-y-0 bg-black/50 md:peer-hover:translate-y-0 md:hover:translate-y-0 md:translate-y-[-100%] md:transition-all w-full flex justify-end items-center gap-2 px-2 py-1 text-sm md:text-lg">
           <abbr title="Like">
             <motion.button
               whileTap={{ scale: 0.7 }}
@@ -43,14 +43,14 @@ export const ImageCard = ({grdCls,itemId, imgUrl,userName,userAvtar }) => {
             </motion.button>
           </abbr>
         </div>
-        <div className="w-full absolute z-10  bg-black/50 peer-hover:translate-y-0 hover:translate-y-0 translate-y-[100%] transition-all  bottom-0 flex justify-between items-center gap-2 px-2 py-1 text-sm md:text-lg">
+        <div className="w-full absolute z-10 translate-y-0 bg-black/50 md:peer-hover:translate-y-0 md:hover:translate-y-0 md:translate-y-[100%] md:transition-all  bottom-0 flex justify-between items-center gap-2 px-2 py-1 text-sm md:text-lg">
           <motion.div
             whileTap={{ scale: 0.7 }}
             className="flex gap-2 text-white justify-start items-center"
           >
             <div className="relative w-[2rem] h-[2rem] rounded-full">
               <img
-                className="w-full hover:grayscale hover:cursor-pointer h-full object-cover rounded-full"
+                className="w-full md:hover:grayscale md:hover:cursor-pointer h-full object-cover rounded-full"
                 src={userAvtar === null || "" || undefined ? avtar : userAvtar}
                 alt=""
               />
@@ -64,7 +64,7 @@ export const ImageCard = ({grdCls,itemId, imgUrl,userName,userAvtar }) => {
               className="px-4 py-1 w-[60px] bg-slate-100 dark:text-black rounded-md"
             >
               {" "}
-              <FontAwesomeIcon icon={faArrowDown} />{" "}
+              <FontAwesomeIcon className="animate-bounce" icon={faArrowDown} />{" "}
             </motion.button>
           </abbr>
           </a>

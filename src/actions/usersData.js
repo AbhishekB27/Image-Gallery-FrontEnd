@@ -21,6 +21,7 @@ export const setImages = ({ imgUrls ,user }) => async(dispatch) => {
 
     console.log(imageData);
     const { status, data, message } = imageData.data;
+    // console.log(data + " : " + imgUrls)
 
     if (status === "Success") {
       toast.success(message, { position: "top-center" });

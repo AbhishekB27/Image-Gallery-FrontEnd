@@ -61,41 +61,31 @@ export const Header = ({ theme, setTheme }) => {
             </span>{" "}
           </div>
         </div>
-        <div className="flex justify-center items-center gap-4">
-          <div className="flex justify-self-center items-center gap-4">
+        <div className="flex justify-center items-center md:gap-4 gap-3">
+          <div className="flex justify-self-center items-center md:gap-4 gap-3">
             {!token ? (
               <>
                 {" "}
                 <motion.button
                 whileHover={{scale:1.1}}
                 whileTap={{scale:0.7}}
-                className="px-5 py-1 rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
+                className="md:px-5 px-3 py-1 rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
                   <Link to='/login'> LOGIN </Link>
                 </motion.button>
                 <motion.button
                 whileHover={{scale:1.1}}
                 whileTap={{scale:0.7}}
-                className="px-5 py-1 rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
+                className="md:px-5 px-3 py-1 rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
                   <Link to='/signup'> SIGNUP </Link>
                 </motion.button>{" "}
               </>
             ) : (
               <div className="flex gap-2">
-                  <motion.button
-              whileTap={{scale:0.7}}
-              name='logOut'
-              className={` px-5 py-1 flex gap-2 justify-between items-center text-lg rounded-md ${isLoading ? 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md text-transparent' : "dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium "} `}>
-                <span className={`text-pink-500 ${isLoading && "invisible" }`}>
-                <FontAwesomeIcon className={`text-blue-400`} icon={faUsers} />{" "}
-                </span>{" "}
-                
-              </motion.button>
-
                 <motion.button
               onClick={handleProfile}
               whileTap={{scale:0.7}}
               name='logOut'
-              className={` px-5 py-1 flex gap-2 justify-between items-center text-lg rounded-md ${isLoading ? 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md text-transparent' : "dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium "} `}>
+              className={` md:px-5 px-3 py-1 flex gap-2 justify-between items-center text-sm md:text-lg rounded-md ${isLoading ? 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md text-transparent' : "dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium "} `}>
                 <span className={`text-pink-500 ${isLoading && "invisible" }`}>
                 {user.email ? user.firstName[0].toUpperCase()+user.lastName[0].toUpperCase(): ''} <FontAwesomeIcon className={`text-blue-400`} icon={faUserCircle} />{" "}
                 </span>{" "}
@@ -105,14 +95,14 @@ export const Header = ({ theme, setTheme }) => {
               onClick={handleLogOut}
               whileTap={{scale:0.7}}
               name='upload'
-              className={`px-5 py-1 flex gap-2 justify-between items-center text-lg rounded-md ${isLoading ? 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md text-transparent' : "dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium "}`}>
+              className={`md:px-5 px-3 py-1 flex gap-2 justify-between items-center text-sm md:text-lg rounded-md ${isLoading ? 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md text-transparent' : "dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium "}`}>
                 Upload
                 <FontAwesomeIcon className={`${isLoading && "invisible" }`} icon={faUpload}/>
               </motion.button>
               </div>
             )}{" "}
           </div>
-          <div className="flex justify-center items-center gap-2 font-poppins dark:border-[#edf2f4] border-[#14213d] border-2 px-2 rounded-md">
+          <div className="flex justify-center text-sm md:text-lg items-center gap-2 font-ubuntu dark:border-[#edf2f4] border-[#14213d] border-2 px-2 rounded-md">
             {theme === "dark" ? (
               <span className="scale-110 text-cyan-500 font-semibold">
                 Dark
@@ -124,7 +114,7 @@ export const Header = ({ theme, setTheme }) => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.7 }}
               onClick={handleMode}
-              className="text-2xl outline-none"
+              className="text-sm md:text-2xl outline-none"
             >
               {theme === "dark" ? (
                 <FontAwesomeIcon icon={faMoon} />
@@ -147,8 +137,8 @@ export const Header = ({ theme, setTheme }) => {
         <div className="w-full flex justify-between items-center px-2">
           <div className="flex justify-start w-fit items-center gap-3 cursor-pointer">
           {/* <img className="h-[40px] w-[45px]" src={logo} alt="" /> */}
-          <FontAwesomeIcon className="h-[40px] w-[45px]" icon={faImage}/>
-          <span className="text-2xl font-poppins font-bold logo gradient-text">Amaze Image</span>
+          <FontAwesomeIcon className="md:h-[40px] h-[30px] md:w-[45px] w-[35px]" icon={faImage}/>
+          <span className="md:text-2xl text-lg font-poppins font-bold logo gradient-text">Amaze Image</span>
           </div>
           <Hamburger setToggle={setToggle}/>
         </div>

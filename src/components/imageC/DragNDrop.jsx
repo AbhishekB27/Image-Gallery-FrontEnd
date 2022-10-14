@@ -8,21 +8,31 @@ import { useEffect } from "react";
 import CloudStorage from "./CloudStorage3D.png";
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { info } from "autoprefixer";
 
 export const DragNDrop = ({ setImageData }) => {
   const [file, setFiles] = useState([]);
   const [url, setUrl] = useState([]);
-  const [prog, setProgress] = useState(null);
+  const [prog, setProgress] = useState(0);
+  const [count, setCount] = useState(0)
+  console.log("count " + count)
+  console.log("progress: " + prog)
+
+
   useEffect(() => {
-    // console.log(url);
+    console.log("progress: " + prog)
+
     setImageData((prev) => {
       // console.log(prev);
       return { ...prev, imgUrls: url };
     });
   }, [url]);
+  useEffect(() => {
+    console.log("progress: " + prog)
+  }, [prog]);
 
   const uploadFile = (data) => {
-    try {
+    try { 
       data.map((item) => {
         // console.log(item);
         const storageRef = ref(storage, `images/${item.name}`);
@@ -30,11 +40,15 @@ export const DragNDrop = ({ setImageData }) => {
         uploadTask.on(
           "state_changed",
           (snapshot) => {
-            const progress = Math.round(
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            );
-            setProgress(progress);
-            console.log(progress)
+            let progress =parseInt((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+            if(progress === 100){
+              setCount(prev => {return prev + 1})
+            }
+            setProgress(count * 20)
+            console.log(count)
+            console.log("pro: " + progress);
+            // setProgress(prog);
+            // console.log(prog)
           },
           (error) => {
             alert(error);
@@ -135,29 +149,9 @@ export const DragNDrop = ({ setImageData }) => {
       </div>
       <div className="w-[80%] md:h-[100px] border-2 dark:border-[#edf2f4] p-2 rounded-md">
         <span className="px-3 font-medium">Images:</span>
-        <div className="px-2 w-full max-h-[36px] py-1 overflow-y-scroll flex flex-col gap-1 ">
-          {file.length === 0
-            ? "No Images Are There"
-            : file.map((item, index) => (
-                <div
-                  className={`${
-                    prog === 100 ? "bg-green-300/90" : "bg-blue-300/70"
-                  } flex justify-between items-center px-1 py-[2px] rounded-md`}
-                  key={index}
-                >
-                  {item.name.split(".")[0].slice(0, 10) +
-                    "." +
-                    item.name.split(".")[1]}{" "}
-                  {prog === 100 ? (
-                    <FontAwesomeIcon
-                      className="text-green-600 border-2 border-green-600 rounded-full p-[2px] w-[16px] h-[16px]"
-                      icon={faCheck}
-                    />
-                  ) : (
-                    <div className="w-[20px] h-[20px] border-4 border-gray-900/70 border-b-gray-300 animate-spin rounded-full bg-purple-400"></div>
-                  )}{" "}
-                </div>
-              ))}
+        <div className="relative flex flex-col gap-1 justify-center items-center rounded-md w-full max-h-[36px] overflow-hidden border-2  border-green-600">
+          <span className="float-right z-10">{count*20 === 100 ? 'Completed' : count*20 + '%' }</span>
+          <div className={`absolute self-start w-[${count*20}%] h-full overflow-x-hidden transition-all bg-green-400 text-center`}></div>
         </div>
         <span className="text-xs pl-[10px]">Total: {url.length} </span>
       </div>

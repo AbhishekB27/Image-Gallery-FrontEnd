@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 export const PhotoSection = () => {
     const { images } = useSelector((state) => state.images);
     const {isLoading} = useSelector((state) => state.loader);
-  const gridArray = ['lg:row-span-2 md:col-span-3 sm:col-span-2','lg:col-span-2 md:col-span-4 sm:col-span-3','lg:col-span-3 md:col-span-4 md:row-span-2 sm:col-span-3','lg:col-span-2 md:col-span-3 sm:col-span-2','md:col-span-3 sm:col-span-5']
+  const gridArray = ['lg:col-span-4 lg:row-span-2 md:col-span-3 sm:col-span-2','lg:col-span-3 md:col-span-4 sm:col-span-3','lg:col-span-6 md:col-span-4 md:row-span-2 sm:col-span-3','lg:col-span-4 md:col-span-3 sm:col-span-2','md:col-span-3 sm:col-span-5']
   let gIndex = 0
   return (
     <div className="w-full grid place-items-center border-yellow-200">
@@ -18,7 +18,7 @@ export const PhotoSection = () => {
           </div>
         ) : (
           // <div className="2xl:w-[1535px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border-yellow-200">
-          <div className="2xl:w-[1535px] grid grid-cols-1 lg:grid-cols-8 md:grid-cols-7 sm:grid-cols-5 gap-2 auto-rows-auto sm:auto-rows-[250px_350px] md:auto-rows-[250px_350px] grid-flow-dense">
+          <div className="2xl:w-[1535px] grid grid-cols-1 lg:grid-cols-10 md:grid-cols-7 sm:grid-cols-5 gap-4 auto-rows-auto sm:auto-rows-[250px_350px] md:auto-rows-[250px_350px] grid-flow-dense">
           {images.map((item,index) => {
             gIndex++
             if(index % 5 === 0){

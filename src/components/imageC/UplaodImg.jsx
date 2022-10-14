@@ -28,13 +28,14 @@ export const UploadImg = ({ uModal, setUmodal }) => {
     imgUrls: [],
     user:user._id
   });
+  console.log("length: "+imageData.imgUrls.length)
   const handleProfile = () => {
     setUmodal(!uModal);
   };
   const handleImages = () => {
-    if(imageData.imgUrls.length > 4){
+    // console.log(imageData);
+    if(imageData.imgUrls.length === 5){
       dispatch(setImages(imageData))
-      // console.log(imageData);
     }
     else{
       toast.info('Upload Atleast 5 Images',{position:"top-center"})
@@ -59,7 +60,8 @@ export const UploadImg = ({ uModal, setUmodal }) => {
         <motion.button
           whileTap={{ scale: 0.98 }}
           onClick={handleImages}
-          className="px-6 py-1 w-[80%] bg-gray-50 text-black text-3xl font-normal rounded-md"
+          className={`px-6 ${imageData.imgUrls.length < 5 ? "cursor-not-allowed" : 'cursor-pointer'} py-1 w-[80%] bg-gray-50 text-black text-3xl font-normal rounded-md`}
+          // disabled={`${imageData.imgUrls.length < 5 ? false : true}`}
         >
             {isLoading ? <div className="w-[35px] h-[35px] animate-spin rounded-full border-[5px] border-t-slate-300 border-slate-600"></div> : 'Upload'}
         </motion.button>
