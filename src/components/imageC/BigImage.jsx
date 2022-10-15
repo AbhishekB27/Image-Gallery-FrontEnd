@@ -84,12 +84,12 @@ export const BigImage = () => {
         </div>
         <div className="container grid place-items-center gap-3">
           <div
-            className={`relative w-full md:flex-auto grid place-items-center max-w-[45rem] max-h-[40rem] ${
+            className={`relative w-full flex justify-center bg-white items-center max-w-[45rem] h-[40rem] ${
               selectedImage.length === 0 && "bg-slate-400 animate-pulse"
             }`}
           >
             <img
-              className="object-cover object-center peer w-ful"
+              className="object-cover object-center peer h-full"
               src={selectedImage.length === 0 ? avtar : `${compImage}&tr=w-1000`}
               alt=""
             />
