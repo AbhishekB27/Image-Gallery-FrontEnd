@@ -18,7 +18,7 @@ export const PhotoSection = () => {
           </div>
         ) : (
           // <div className="2xl:w-[1535px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border-yellow-200">
-          <div className="2xl:w-[1535px] grid grid-cols-1 lg:grid-cols-10 md:grid-cols-7 sm:grid-cols-5 gap-4 auto-rows-auto sm:auto-rows-[250px_350px] md:auto-rows-[250px_350px] grid-flow-dense">
+          <div className="2xl:w-[1535px] w-full grid grid-cols-1 lg:grid-cols-10 md:grid-cols-7 sm:grid-cols-5 gap-4 auto-rows-auto sm:auto-rows-[250px_350px] md:auto-rows-[250px_350px] grid-flow-dense">
           {images.map((item,index) => {
             gIndex++
             if(index % 5 === 0){

@@ -17,6 +17,7 @@ import { setReviewWithImage } from "../../actions/usersData";
 import { uploadUserReview } from "../../actions/review";
 import { useHistory } from "react-router-dom";
 import { Review } from "./Review";
+import { compressedImage } from "./compressedImage";
 
 export const BigImage = () => {
   const { user, token } = useSelector((state) => state.auth);
@@ -32,6 +33,7 @@ export const BigImage = () => {
       ? new Date(selectedImage[0].created).toUTCString()
       : "10-10-2022";
   // console.log(selectedImage[0].imageUrl)
+  const compImage = compressedImage(selectedImage[0].imageUrl)
   useEffect(() => {
     if (!token) {
       navigate("/login");
@@ -82,13 +84,13 @@ export const BigImage = () => {
         </div>
         <div className="container grid place-items-center gap-3">
           <div
-            className={`relative w-full max-w-[45rem] h-[40rem] ${
+            className={`relative w-full md:flex-auto grid place-items-center max-w-[45rem] max-h-[40rem] ${
               selectedImage.length === 0 && "bg-slate-400 animate-pulse"
             }`}
           >
             <img
-              className="object-cover peer object-center w-full h-full"
-              src={selectedImage.length === 0 ? avtar : selectedImage[0].imageUrl}
+              className="object-cover object-center peer w-ful"
+              src={selectedImage.length === 0 ? avtar : `${compImage}&tr=w-1000`}
               alt=""
             />
             <div className="flex gap-2  hover:cursor-pointer peer-hover:opacity-100 hover:opacity-100 opacity-0 overflow-hidden absolute w-full bottom-0 md:text-2xl text-lg font-normal p-1 justify-between items-center transition-all duration-100 ease-linear bg-black/50">
