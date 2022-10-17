@@ -133,7 +133,7 @@ export const Header = ({ theme, setTheme }) => {
         </div>
       </div>
 
-      <div className="relative md:static md:flex md:flex-row   flex-col justify-between items-center">
+      <div className="relative md:static md:flex md:flex-row flex-col justify-between items-center">
         <div className="w-full flex justify-between items-center px-2">
           <div className="flex justify-start w-fit items-center gap-3 cursor-pointer">
           {/* <img className="h-[40px] w-[45px]" src={logo} alt="" /> */}
@@ -143,7 +143,7 @@ export const Header = ({ theme, setTheme }) => {
           <Hamburger setToggle={setToggle}/>
         </div>
         <ol
-        className={`${toggle === true ? 'h-[100vh] opacity-100 transition-all duration-300 ease-linear' : 'h-[0] opacity-0 transition-all duration-300 ease-linear'} md:text-current text-white font-medium absolute md:static w-full  z-10  md:translate-y-0 md:opacity-100 md:flex md:flex-row md:justify-end md:space-y-0 md:h-auto md:bg-transparent flex flex-col justify-center items-center space-y-4 bg-black/95 border-transparent border-2`}>
+        className={`${toggle === true ? 'h-[100vh] opacity-100 transition-all duration-300 ease-linear' : 'h-[0] opacity-0 transition-all duration-300 ease-linear'} md:text-current text-white font-medium absolute md:static w-full  z-50  md:translate-y-0 md:opacity-100 md:flex md:flex-row md:justify-end md:space-y-0 md:h-auto md:bg-transparent flex flex-col justify-center items-center space-y-4 bg-black/95 border-transparent border-2`}>
           <li className="md:w-[100px] md:text-center   text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
           <Link to='/'> HOME </Link>
           </li>

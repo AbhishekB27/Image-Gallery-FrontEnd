@@ -7,23 +7,30 @@ import { getAllImages } from "./actions/usersData";
 
 import "./App.css";
 import { MyApp } from "./components/MyApp";
+import { networkStatus } from "./network/networkStatus";
 
 function App() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   
   const {token,user} = useSelector(state => state.auth)
+  const isOnline = window.navigator.onLine
   useEffect(() => {
     const token = localStorage.getItem("token");
-    dispatch(getAllImages())
-    if(token != null){
-      dispatch(verifyToken(token))
-      dispatch(getReview())
+    if(isOnline){
+      dispatch(getAllImages())
+      if(token != null){
+        dispatch(verifyToken(token))
+        dispatch(getReview())
+      }
+      else {
+        navigate('/')
+      }
     }
-    else {
-      navigate('/')
+    else{
+    networkStatus()
     }
-  }, [token])
+  }, [token,isOnline])
   
   
   return (
