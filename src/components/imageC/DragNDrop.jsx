@@ -121,7 +121,7 @@ export const DragNDrop = ({ setImageData }) => {
         onDragEnter={dragEnter}
         onDragLeave={dragLeave}
         onDrop={fileDrop}
-        className="relative w-[80%] h-[200px] md:h-[355px] flex flex-col justify-center items-center bg-blue-300/70 rounded-md border-2 border-white border-dashed dark:border-[#edf2f4]"
+        className="relative w-[80%] h-[200px] md:h-[355px] flex flex-col justify-center items-center bg-cyan-300 rounded-md border-2 border-white border-dashed dark:border-[#edf2f4]"
       >
         <input
           accept="image/*"

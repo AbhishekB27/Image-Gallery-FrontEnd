@@ -56,15 +56,15 @@ export const HeroSection = () => {
       initial={{ opacity: 0, scale: 0.5, }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-  className={`${isLoading && 'animate-pulse'} animate-none w-full md:max-w-[45%] h-[250px] md:h-[450px] border-purple-500 flex flex-col justify-center md:items-start items-center space-y-2`}>
-        <span className={`text-2xl md:text-4xl md:text-left text-center font-medium font-poppins ${isLoading && 'dark:bg-slate-500 bg-slate-300 rounded-md w-fit h-8 text-transparent'} dark:text-[#edf2f4] text-[#14213d]`}>We would love to </span>
-        <span className={`text-2xl md:text-4xl md:text-left text-center font-medium font-poppins ${isLoading && 'dark:bg-slate-500 bg-slate-300 rounded-md w-fit h-8 text-transparent'} dark:text-[#edf2f4] text-[#14213d]`}>visit with you by phone</span>
-        <span className={`text-2xl md:text-4xl md:text-left text-center font-medium font-poppins ${isLoading && 'dark:bg-slate-500 bg-slate-300 rounded-md w-fit h-8 text-transparent'} dark:text-[#edf2f4] text-[#14213d]`}> or eye to eye and discourse </span>
-        <span className={`text-sm md:text-base md:text-left text-center font-medium font-poppins ${isLoading && 'dark:bg-slate-500 bg-slate-300 rounded-md w-fit h-8 text-transparent'} dark:text-[#edf2f4] text-[#14213d]`}>With Pleasure about your wedding, event,</span>
-        <span className={`text-sm md:text-base md:text-left text-center font-medium font-poppins ${isLoading && 'dark:bg-slate-500 bg-slate-300 rounded-md w-fit h-8 text-transparent'} dark:text-[#edf2f4] text-[#14213d]`}>picture session, or video adventure.</span>
+  className={`animate-none w-full md:max-w-[45%] h-[250px] md:h-[450px] border-purple-500 flex flex-col justify-center md:items-start items-center space-y-2`}>
+        <span className={`text-2xl md:text-4xl md:text-left text-center font-medium font-poppins ${isLoading && 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md w-fit h-8 dark:text-transparent text-transparent'} dark:text-[#edf2f4] text-[#14213d]`}>We would love to </span>
+        <span className={`text-2xl md:text-4xl md:text-left text-center font-medium font-poppins ${isLoading && 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md w-fit h-8 dark:text-transparent text-transparent'} dark:text-[#edf2f4] text-[#14213d]`}>connect with you by social </span>
+        <span className={`text-2xl md:text-4xl md:text-left text-center font-medium font-poppins ${isLoading && 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md w-fit h-8 dark:text-transparent text-transparent'} dark:text-[#edf2f4] text-[#14213d]`}>media unveil your skills  </span>
+        <span className={`text-sm md:text-base md:text-left text-center font-medium font-poppins ${isLoading && 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md w-fit h-8 dark:text-transparent text-transparent'} dark:text-[#edf2f4] text-[#14213d]`}>by clicking the photos of wedding, </span>
+        <span className={`text-sm md:text-base md:text-left text-center font-medium font-poppins ${isLoading && 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md w-fit h-8 dark:text-transparent text-transparent'} dark:text-[#edf2f4] text-[#14213d]`}>event,adventure with pleasure.</span>
         <motion.button
         whileTap={{ scale: 0.7 }}
-        className={` px-3 py-1 ${isLoading ? 'dark:bg-slate-500 bg-slate-300 rounded-md w-[90px] h-9 text-transparent' : 'rounded-md font-medium text-base md:text-lg dark:text-[#14213d] dark:bg-[#edf2f4] bg-[#14213d] text-[#edf2f4] relative before:absolute before:top-0 before:left-0 before:w-0 before:overflow-hidden hover:before:w-full before:transition-all before:grid before:place-items-center before:h-full before:bg-[#14213d] dark:before:bg-[#edf2f4] overflow-hidden before:content-["🚀"]'} `}>Let's Go</motion.button>
+        className={` px-3 py-1 ${isLoading ? 'animate-pulse dark:bg-slate-500 bg-slate-300 rounded-md w-[90px] h-9 dark:text-transparent text-transparent' : 'rounded-md font-medium text-base md:text-lg dark:text-[#14213d] dark:bg-[#edf2f4] bg-[#14213d] text-[#edf2f4] relative before:absolute before:top-0 before:left-0 before:w-0 before:overflow-hidden hover:before:w-full before:transition-all before:grid before:place-items-center before:h-full before:bg-[#14213d] dark:before:bg-[#edf2f4] overflow-hidden before:content-["🚀"]'} `}>Let's Go</motion.button>
       </div>
     </div>
   )
