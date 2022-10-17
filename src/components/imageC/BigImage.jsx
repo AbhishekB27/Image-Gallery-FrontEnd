@@ -61,7 +61,7 @@ export const BigImage = () => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.5 }}
         transition={{ duration: 0.3 }}
-        className={`absolute flex px-2 py-2 flex-col justify-start items-center top-[3.25rem] w-full min-h-screen h-auto dark:bg-[#14213d]/95 dark:text-[#edf2f4] bg-[#edf2f4]/95 text-[#14213d] z-10 ${
+        className={`absolute flex px-2 py-2 flex-col justify-start items-center top-[5.25rem] md:top-[3.25rem] w-full min-h-screen h-auto dark:bg-[#14213d]/95 dark:text-[#edf2f4] bg-[#edf2f4]/95 text-[#14213d] z-10 ${
           big && "hidden"
         }`}
       >
