@@ -24,7 +24,7 @@ export const ImageCard = ({ grdCls, itemId, imgUrl, userName, userAvtar }) => {
           } w-full h-full  object-cover object-center md:hover:scale-110 md:transition-all`}
           // src={imgUrl}
           sizes="(min-width: 1335px) 416px, (min-width: 992px) calc(calc(100vw - 72px) / 3), (min-width: 768px) calc(calc(100vw - 48px) / 2), 100vw"
-          srcset={`${compImg}&tr=w-100 100w,${compImg}&tr=w-200 200w,${compImg}&tr=w-300 300w,${compImg}&tr=w-400 400w,${compImg}&tr=w-500 500w,${compImg}&tr=w-600 600w,${compImg}&tr=w-700 700w,${compImg}&tr=w-800 800w,${compImg}&tr=w-900 900w,${compImg}&tr=w-1000 1000w,${compImg}&tr=w-1100 1100w,${compImg}&tr=w-1200 1200w,${compImg}&tr=w-1300 1300w,${compImg}&tr=w-1400 1400w,${compImg}&tr=w-1500 1500w,${compImg}&tr=w-1600 1600w,${compImg}&tr=w-1700 1700w,${compImg}&tr=w-800 800w,${compImg}&tr=w-1900 1900w,${compImg}&tr=w-2000 2000w`}
+          // srcset={`${compImg}&tr=w-100 100w,${compImg}&tr=w-200 200w,${compImg}&tr=w-300 300w,${compImg}&tr=w-400 400w,${compImg}&tr=w-500 500w,${compImg}&tr=w-600 600w,${compImg}&tr=w-700 700w,${compImg}&tr=w-800 800w,${compImg}&tr=w-900 900w,${compImg}&tr=w-1000 1000w,${compImg}&tr=w-1100 1100w,${compImg}&tr=w-1200 1200w,${compImg}&tr=w-1300 1300w,${compImg}&tr=w-1400 1400w,${compImg}&tr=w-1500 1500w,${compImg}&tr=w-1600 1600w,${compImg}&tr=w-1700 1700w,${compImg}&tr=w-800 800w,${compImg}&tr=w-1900 1900w,${compImg}&tr=w-2000 2000w`}
           src={`${compImg}&tr=w-1000`}
         />
       </Link>

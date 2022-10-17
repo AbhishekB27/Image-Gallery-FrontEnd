@@ -10,12 +10,9 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import avtar from "./UserAvtar.jpg";
-import noReview from "./NoReview.png";
 import { faSmile, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { setReviewWithImage } from "../../actions/usersData";
 import { uploadUserReview } from "../../actions/review";
-import { useHistory } from "react-router-dom";
 import { Review } from "./Review";
 import { compressedImage } from "./compressedImage";
 
@@ -82,15 +79,16 @@ export const BigImage = () => {
             />
           </motion.div>{" "}
         </div>
-        <div className="container grid place-items-center gap-3">
+        <div className="w-full grid place-items-center gap-3">
           <div
-            className={`relative w-full flex justify-center bg-white items-center max-w-[45rem] h-[40rem] ${
+            className={`relative w-full flex justify-center bg-white items-center md:max-w-[45rem] md:h-[40rem] ${
               selectedImage.length === 0 && "bg-slate-400 animate-pulse"
             }`}
           >
             <img
-              className="object-cover object-center peer h-full"
+              className="object-cover object-center peer w-full h-full"
               src={selectedImage.length === 0 ? avtar : `${compImage}&tr=w-1000`}
+              sizes="(max-width: 767px) 100vw, (max-width: 902px) min(100%, 870px), (max-height: 755px) min(100%, 870px), (min-aspect-ratio: 6000/4000) calc((calc(100vh - 175px)) * 1.5), calc(100vw - 32px)"
               alt=""
             />
             <div className="flex gap-2  hover:cursor-pointer peer-hover:opacity-100 hover:opacity-100 opacity-0 overflow-hidden absolute w-full bottom-0 md:text-2xl text-lg font-normal p-1 justify-between items-center transition-all duration-100 ease-linear bg-black/50">
@@ -123,7 +121,8 @@ export const BigImage = () => {
             </div>
           </div>
           <div className="border-purple-700 w-full flex flex-col gap-3 justify-center items-center">
-            <div className="text-base md:text-xl w-full flex justify-around items-center">
+            
+            <div className="text-base md:text-xl w-full flex flex-col md:flex-row justify-around items-center">
               <div>
                 {" "}
                 Likes <FontAwesomeIcon icon={faThumbsUp} /> : 491{" "}
@@ -145,12 +144,12 @@ export const BigImage = () => {
                 value={review}
                 className={`${
                   isLoading && "cursor-not-allowed"
-                } text-black resize-none placeholder:text-slate-900 placeholder:font-medium border-2 border-slate-700 px-2 py-1 outline-none rounded-md`}
+                } text-black min-h-[10rem] resize-none placeholder:text-slate-900 placeholder:font-medium border-2 border-slate-700 px-2 py-1 outline-none rounded-md`}
                 name=""
                 id=""
                 placeholder="Add Review"
-                cols="60"
-                rows="8"
+                // cols="60"
+                // rows="8"
               ></textarea>
               <motion.button
                 onClick={uploadReview}
