@@ -34,7 +34,7 @@ export const HeroSection = () => {
   // },[])
   
   return (
-    <div className=' w-full h-auto min-h-[85vh] flex flex-col md:flex-row md:justify-center md:items-center border-lime-300'>
+    <div className=' w-full h-auto md:min-h-[85vh] flex flex-col md:flex-row md:justify-center md:items-center border-lime-300'>
       <motion.div
       initial={{ opacity: 0, scale: 0.5, }}
       animate={{ opacity: 1, scale: 1 }}
