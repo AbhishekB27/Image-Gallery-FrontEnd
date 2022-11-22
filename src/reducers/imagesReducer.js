@@ -2,10 +2,10 @@ const initialState = {
   images: [
     {
       imageUrl:'',
-      user:{
-        userName:'',
-        email:''
-      }
+      imageName:'',
+      category:'',
+      created:'',
+      user:'',
     }
   ],
 };
@@ -18,10 +18,9 @@ const imagesReducer = (state = initialState, action) => {
         ...state,
         images: payload,
       }
-      case "UPLOAD_SUCCESS":
+      case "UPLOAD_IMAGES":
         return {
-          ...state,
-          ...payload,
+        images:[ ...state.images,...payload],
         };
         case "UPLOAD_FAILURE":
           return {

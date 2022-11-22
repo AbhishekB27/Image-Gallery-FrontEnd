@@ -10,7 +10,7 @@ import avtar from "./UserAvtar.jpg";
 import { motion } from "framer-motion";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { storage } from "../../firebase/index";
+import storage from "../../firebase/index";
 import {
   ref,
   getDownloadURL,
@@ -25,6 +25,8 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const { images } = useSelector((state) => state.images);
   const { user,token } = useSelector((state) => state.auth);
+  const { collection} = useSelector((state) => state.collections);
+
 
   useEffect(() => {
     // const token = localStorage.getItem("token");
@@ -60,8 +62,8 @@ export const Profile = () => {
       //       alert(err);
       //     });
       // }
-      console.log(url);
-      console.log(url.avtar === user.avtar);
+      // console.log(url);
+      // console.log(url.avtar === user.avtar);
       if (url.avtar !== user.avtar) {
         console.log("updated");
         dispatch(updateUser(url));
@@ -114,8 +116,8 @@ export const Profile = () => {
     console.log(url);
     console.log(user.avtar)
   };
-console.log(url.avtar === null && user.avtar === null)
-console.log(user.avtar)
+// console.log(url.avtar === null && user.avtar === null)
+// console.log(user.avtar)
   return (
     <div className="w-full flex flex-col justify-center items-start">
       <div className="w-full flex justify-center items-center">
@@ -126,7 +128,7 @@ console.log(user.avtar)
            }
             <img
             className="w-full hover:grayscale hover:cursor-pointer h-full object-cover rounded-full"
-            src={url.avtar === null && user.avtar === null || user.avtar === '' ? avtar : user.avtar}
+            src={user.avtar || `https://joeschmoe.io/api/v1/${user.userName}`}
             alt=""
           />
             <abbr title="Change Profile">
@@ -171,12 +173,11 @@ console.log(user.avtar)
               ) : (
                 <span>
                   {user.designation + " "}
-                  <a
+                  <Link to='/contactUs'
                     className="hover:underline text-blue-500 md:font-medium"
-                    href="#"
                   >
                     Join Us
-                  </a>
+                  </Link>
                 </span>
               )}
             </div>
@@ -203,7 +204,7 @@ console.log(user.avtar)
           <Link to="/userProfile/collections">
             <button className="outline-none hover:cursor-pointer bg-bottom py-3 px-2 bg-gradient-to-r from-black to-black dark:from-white dark:to-white bg-[length:0%_3px] hover:bg-[length:100%_3px] bg-no-repeat transition-all">
               {" "}
-              <FontAwesomeIcon icon={faDatabase} /> Collection 0
+              <FontAwesomeIcon icon={faDatabase} /> Collection {collection && collection.length}
             </button>
           </Link>
         </div>

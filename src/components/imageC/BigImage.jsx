@@ -29,7 +29,7 @@ export const BigImage = () => {
     selectedImage.length !== 0
       ? new Date(selectedImage[0].created).toUTCString()
       : "10-10-2022";
-  // console.log(selectedImage[0].imageUrl)
+  // console.log(selectedImage[0].imageUrl || "True")
   const compImage = compressedImage(selectedImage[0].imageUrl)
   useEffect(() => {
     if (!token) {
@@ -98,7 +98,7 @@ export const BigImage = () => {
                   src={
                     selectedImage.length === 0
                       ? avtar
-                      : (selectedImage[0].user.avtar === null ? avtar : selectedImage[0].user.avtar)
+                      : (selectedImage[0].user.avtar || `https://joeschmoe.io/api/v1/${selectedImage[0].user.userName}`)
                   }
                   alt=""
                 />

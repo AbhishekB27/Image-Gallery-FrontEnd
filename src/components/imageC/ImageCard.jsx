@@ -14,9 +14,14 @@ import { compressedImage } from "./compressedImage";
 
 export const ImageCard = ({ grdCls, itemId, imgUrl, userName, userAvtar }) => {
   // const { user } = useSelector((state) => state.auth);
-   let compImg = compressedImage(`${imgUrl}`)
+  let compImg = compressedImage(`${imgUrl}`);
   return (
-    <div class={`relative rounded-md overflow-hidden w-full h-full ${grdCls}`}>
+    <motion.div
+      initial={{ opacity: 0, translateX: "-100%", scale: 0.5 }}
+      animate={{ opacity: 1, translateX: 0, scale: 1 }}
+      transition={{ delayChildren: 0.3, type: "spring", stiffness: 100 }}
+      class={`relative rounded-md overflow-hidden w-full h-full ${grdCls}`}
+    >
       <Link className="peer " to={`/bigImage/${itemId}`}>
         <img
           class={`${
@@ -39,6 +44,7 @@ export const ImageCard = ({ grdCls, itemId, imgUrl, userName, userAvtar }) => {
           </motion.button>
         </abbr>
         <abbr title="Add Collection">
+          <Link to={`/addToCollection/${itemId}`}>
           <motion.button
             whileTap={{ scale: 0.7 }}
             className="px-4 py-1 w-[60px] bg-slate-100 dark:text-black rounded-md"
@@ -46,6 +52,7 @@ export const ImageCard = ({ grdCls, itemId, imgUrl, userName, userAvtar }) => {
             {" "}
             <FontAwesomeIcon icon={faPlus} />{" "}
           </motion.button>
+          </Link>
         </abbr>
       </div>
       <div className="w-full absolute z-10 translate-y-0 bg-black/50 md:peer-hover:translate-y-0 md:hover:translate-y-0 md:translate-y-[100%] md:transition-all  bottom-0 flex justify-between items-center gap-2 px-2 py-1 text-sm md:text-lg">
@@ -56,7 +63,7 @@ export const ImageCard = ({ grdCls, itemId, imgUrl, userName, userAvtar }) => {
           <div className="relative w-[2rem] h-[2rem] rounded-full">
             <img
               className="w-full md:hover:grayscale md:hover:cursor-pointer h-full object-cover rounded-full"
-              src={userAvtar === null || "" || undefined ? avtar : userAvtar}
+              src={userAvtar || `https://joeschmoe.io/api/v1/${userName}`}
               alt=""
             />
           </div>
@@ -77,6 +84,6 @@ export const ImageCard = ({ grdCls, itemId, imgUrl, userName, userAvtar }) => {
           </abbr>
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 };

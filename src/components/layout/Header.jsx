@@ -13,18 +13,23 @@ import { Link} from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ProfileLogout } from "./ProfileLogout";
 import { UploadImg } from "../imageC/UplaodImg";
+import { useEffect } from "react";
 
 export const Header = ({ theme, setTheme }) => {
-  const { token,user,authLoaded} =useSelector(state=> state.auth)
+  const { token,user} =useSelector(state=> state.auth)
+  const { images} =useSelector(state=> state.images)
   const {isLoading} = useSelector(state=>state.loader)
     const [toggle, setToggle] = useState(false)
     const [lModal, setlModal] = useState(false)
     const [uModal, setUmodal] = useState(false)
+    const [category, setCategory] = useState([])
+    let render = 0;
+    let arr =[]
 // console.log("lModal: " + lModal)
+
     const handleMode = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
-
   const handleProfile = (event)=>{
     const name = event.target.name
     if(uModal){
@@ -33,6 +38,10 @@ export const Header = ({ theme, setTheme }) => {
     setlModal(!lModal)
 
   }
+  images.filter(item=> item.category).map((item)=>{
+    arr.push(item.category)
+  })
+  let unique = [...new Set(arr)]
   const handleLogOut = (event)=>{
     const name = event.target.name
     if(lModal){
@@ -143,12 +152,19 @@ export const Header = ({ theme, setTheme }) => {
           <Hamburger setToggle={setToggle}/>
         </div>
         <ol
-        className={`${toggle === true ? 'h-[100vh] opacity-100 transition-all duration-300 ease-linear' : 'h-[0] opacity-0 transition-all duration-300 ease-linear'} md:text-current text-white font-medium absolute md:static w-full  z-50  md:translate-y-0 md:opacity-100 md:flex md:flex-row md:justify-end md:space-y-0 md:h-auto md:bg-transparent flex flex-col justify-center items-center space-y-4 bg-black/95 border-transparent border-2`}>
+        className={`${toggle === true ? 'h-[100vh] opacity-100 transition-all duration-300 ease-linear' : 'h-[0] opacity-0 transition-all duration-300 ease-linear'} md:text-current text-white font-medium absolute md:static w-full  z-50 md:z-0  md:translate-y-0 md:opacity-100 md:flex md:flex-row md:justify-end md:space-y-0 md:h-auto md:bg-transparent flex flex-col justify-center items-center space-y-4 bg-black/95 border-transparent border-2`}>
           <li className="md:w-[100px] md:text-center   text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
           <Link to='/'> HOME </Link>
           </li>
-          <li className="md:w-[100px] md:text-center   text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
-          <Link> CATEGORIES </Link>
+          <li className="relative group md:w-[100px] md:text-center   text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
+          CATEGORIES
+          <ol className="md:absolute flex flex-col justify-between transition-all group-hover:h-auto top-[2.6rem] w-full md:bg-white h-0 overflow-hidden">
+            {
+              unique.map(item =>{
+                return <li className="hover:bg-slate-200 text-sm md:text-base font-light md:font-normal">{item}</li>
+              })
+            }
+          </ol>
           </li>
           <li className="md:w-[100px] md:text-center   text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
           <Link to='/contactUs'> CONTACT </Link>

@@ -2,9 +2,9 @@ import authHeader from "../auth_header";
 import axiosI from "../axiosInstance";
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from "axios";
 
-export const setImages = ({ imgUrls ,user }) => async(dispatch) => {
+export const setImages = (iData) => async(dispatch) => {
+  console.log(iData)
   try {
     dispatch({
       type: "SET_LOADING",
@@ -13,8 +13,7 @@ export const setImages = ({ imgUrls ,user }) => async(dispatch) => {
     console.log("Hello" + " : " + authHeader());
     const imageData = await axiosI.post("/images/upload",
       {
-        imgUrls,
-        user,
+        data:iData
       },
       { headers: authHeader() }
     );
@@ -27,13 +26,13 @@ export const setImages = ({ imgUrls ,user }) => async(dispatch) => {
       toast.success(message, { position: "top-center" });
       dispatch({
         type: "UPLOAD_IMAGES",
-        payload: { uploadSuccess: true },
+        payload: data,
       });
     } else {
       toast.error(message, { position: "top-center" });
       dispatch({
         type: "UPLOAD_FAILURE",
-        payload: { uploadSuccess: false },
+        payload:data,
       });
       console.log(message);
     }
@@ -50,41 +49,41 @@ export const setImages = ({ imgUrls ,user }) => async(dispatch) => {
 }
 
 //Route for createing a new review and updating a image 'review' field with it
-export const setReviewWithImage =({stars,review,id}) => async (dispatch)=>{
-  try {
-    dispatch({
-      type: "SET_LOADING",
-      payload: { state: true },
-    });
+// export const setReviewWithImage =({stars,review,id}) => async (dispatch)=>{
+//   try {
+//     dispatch({
+//       type: "SET_LOADING",
+//       payload: { state: true },
+//     });
 
-    const imageData = await axiosI.post(`/images/image/${id}`, {
-      stars,
-      review,
-    });
-    console.log(imageData);
-    const { status, data, message } = imageData.data;
+//     const imageData = await axiosI.post(`/images/image/${id}`, {
+//       stars,
+//       review,
+//     });
+//     console.log(imageData);
+//     const { status, data, message } = imageData.data;
 
-    if (status === "Success") {
-      toast.success(message, { position: "top-center" });
-      dispatch({
-        type: "UPDATE_SUCCESS",
-        payload: {  },
-      });
-    } else {
-      toast.error(message, { position: "top-center" });
-      console.log(message);
-    }
-  } catch (error) {
-    console.log(error.message);
-    const imageData = error.message;
-  }
-  finally{
-    dispatch({
-      type: "SET_LOADING",
-      payload: { state: false },
-    });
-  }
-};
+//     if (status === "Success") {
+//       toast.success(message, { position: "top-center" });
+//       dispatch({
+//         type: "UPDATE_SUCCESS",
+//         payload: {  },
+//       });
+//     } else {
+//       toast.error(message, { position: "top-center" });
+//       console.log(message);
+//     }
+//   } catch (error) {
+//     console.log(error.message);
+//     const imageData = error.message;
+//   }
+//   finally{
+//     dispatch({
+//       type: "SET_LOADING",
+//       payload: { state: false },
+//     });
+//   }
+// };
 
 //Method for retrieving the image by pouplating a review
 // const getImageWithReview = (id) => async (dispatch)=>{

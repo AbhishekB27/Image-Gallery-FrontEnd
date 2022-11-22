@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import verifyToken from "./actions/auth";
+import { getAllCollections } from "./actions/collectionI";
 import { getReview } from "./actions/review";
 import { getAllImages } from "./actions/usersData";
 
@@ -19,12 +20,13 @@ function App() {
     const token = localStorage.getItem("token");
     if(isOnline){
       dispatch(getAllImages())
-      if(token != null){
-        dispatch(verifyToken(token))
-        dispatch(getReview())
+      if(token === null){
+        navigate('/')
       }
       else {
-        navigate('/')
+        dispatch(verifyToken(token))
+        dispatch(getAllCollections(user._id))
+        dispatch(getReview())
       }
     }
     else{

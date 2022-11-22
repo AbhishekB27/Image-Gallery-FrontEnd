@@ -7,10 +7,11 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
-import { DragNDrop } from "./DragNDrop";
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setImages } from "../../actions/usersData";
+import image from "../home/image";
+import DragNDrop from "./DragNDrop";
 // import setImages from "../../actions/usersData";
 
 
@@ -24,22 +25,9 @@ export const UploadImg = ({ uModal, setUmodal }) => {
       navigate('/login')
     }
   }, [token])
-  const [imageData, setImageData] = useState({
-    imgUrls: [],
-    user:user._id
-  });
-  console.log("length: "+imageData.imgUrls.length)
+  const [imageData, setImageData] = useState([]);
   const handleProfile = () => {
     setUmodal(!uModal);
-  };
-  const handleImages = () => {
-    // console.log(imageData);
-    if(imageData.imgUrls.length === 5){
-      dispatch(setImages(imageData))
-    }
-    else{
-      toast.info('Upload Atleast 5 Images',{position:"top-center"})
-    }
   };
   return (
     <motion.div
@@ -47,7 +35,7 @@ export const UploadImg = ({ uModal, setUmodal }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.5 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col gap-9 text-white justify-start items-center z-50 absolute top-[7.15rem] md:top-[3.2rem] min-h-[92vh] h-auto w-full bg-black/90"
+      className="flex flex-col gap-2 px-2 py-4 z-50 text-white justify-start items-center absolute lg:fixed lg:top-0 lg:bottom-0 lg:left-0 lg:right-0 lg:min-h-screen h-auto w-full bg-black/70"
     >
       <div className="w-full h-fit px-2">
         {" "}
@@ -55,16 +43,9 @@ export const UploadImg = ({ uModal, setUmodal }) => {
           <FontAwesomeIcon className="md:text-2xl" icon={faTimes} />
         </motion.button>{" "}
       </div>
-      <div className="flex flex-col justify-center items-center gap-2 p-1 w-full h-full">
-        <DragNDrop setImageData={setImageData} />
-        <motion.button
-          whileTap={{ scale: 0.98 }}
-          onClick={handleImages}
-          className={`px-6 ${imageData.imgUrls.length < 5 ? "cursor-not-allowed" : 'cursor-pointer'} py-1 w-[80%] bg-gray-50 text-black text-3xl font-normal rounded-md`}
-          // disabled={`${imageData.imgUrls.length < 5 ? false : true}`}
-        >
-            {isLoading ? <div className="w-[35px] h-[35px] animate-spin rounded-full border-[5px] border-t-slate-300 border-slate-600"></div> : 'Upload'}
-        </motion.button>
+      <div className="flex flex-col justify-center items-center gap-2 container">
+        <DragNDrop
+         setImageData={setImageData} />
       </div>
     </motion.div>
   );

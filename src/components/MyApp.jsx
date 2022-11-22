@@ -4,7 +4,7 @@ import { Header } from "./layout/Header";
 import { Footer } from "./layout/Footer";
 import { HomePage } from "./home/HomePage";
 import { Route, Routes } from "react-router-dom";
-import { Contact } from "./layout/Contact";
+// import { Contact } from "./layout/Contact";
 import { SignUp } from "./auth/SignUp";
 import { Login } from "./auth/Login";
 import { Profile } from "./user/Profile";
@@ -12,6 +12,8 @@ import { Photos } from "./user/Photos";
 import { Collections } from "./user/Collections";
 import { EditProfile } from "./user/EditProfile";
 import { BigImage } from "./imageC/BigImage";
+import { AddCollection } from "./imageC/AddCollection";
+import Contact from "./Contact";
 
 
 export const MyApp = () => {
@@ -51,6 +53,8 @@ export const MyApp = () => {
           <Route path="/account/:userId" element={<EditProfile />} />
           <Route path="/bigImage/:imgId" element={<BigImage />} />
           <Route path="userProfile/bigImage/:imgId" element={<BigImage />} />
+          <Route path="addToCollection/:imgId" element={<AddCollection />} />
+
         </Routes>
       </div>
       <Footer />
