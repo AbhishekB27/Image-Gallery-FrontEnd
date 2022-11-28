@@ -1,6 +1,7 @@
 const initialState = {
     token: null,
     user:{
+        avtar:'',
         userName:null,
         email:null,
     },
@@ -45,7 +46,7 @@ const authReducer = (state = initialState,action)=>{
             }   
         case 'UPDATE_FAILURE':
             return{
-                ...payload
+                ...state
             }
         default:
             return state

@@ -135,7 +135,7 @@ export const signUpUser = ({avtar,userName,firstName,lastName,email,password,con
 }
 
 export const updateUser = (updatedData)=> async(dispatch)=>{
-    // console.log(updatedData)
+    console.log(updatedData)
     try {
         dispatch({
             type:'SET_LOADING',
@@ -158,7 +158,7 @@ export const updateUser = (updatedData)=> async(dispatch)=>{
             toast.error(message,{position:"top-center"})
             dispatch({
                 type:'UPDATE_FAILURE',
-                payload:{...updatedData}
+                payload:{}
             })
         }
     } catch (error) {

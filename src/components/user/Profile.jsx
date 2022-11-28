@@ -6,7 +6,6 @@ import {
 import { faDatabase, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import avtar from "./UserAvtar.jpg";
 import { motion } from "framer-motion";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +18,8 @@ import {
 } from "firebase/storage";
 import { updateUser } from "../../actions/auth";
 import { Loader } from "../Loader";
+import { info } from "autoprefixer";
+import deleteEI from "./delete";
 
 export const Profile = () => {
   const navigate = useNavigate()
@@ -26,8 +27,15 @@ export const Profile = () => {
   const { images } = useSelector((state) => state.images);
   const { user,token } = useSelector((state) => state.auth);
   const { collection} = useSelector((state) => state.collections);
-
-
+  const [uploaded, setUploaded] = useState(false)
+  const {isLoading} = useSelector((state) => state.loader)
+  const [aLoading, setLoading] = useState(false)
+  const [count, setCount] = useState(0)
+  const [avtar, setAvtar] = useState({
+    name:'',
+    url: null,
+    id:''
+  });
   useEffect(() => {
     // const token = localStorage.getItem("token");
     // console.log(token)
@@ -35,49 +43,24 @@ export const Profile = () => {
       navigate('/login')
     }
   }, [token])
-
-  // console.log(user.avtar)
-  const {isLoading} = useSelector((state) => state.loader)
-  const [url, setUrl] = useState({
-    avtar: null,
-  });
-  // console.log(url);
-  useEffect(() => {
-    // console.log(url.avtar === null);
-    if (url.avtar !== null) {
-      // console.log(url.avtar);
-      // if (url.avtar !== null && url.avtar !== user.avtar||''||null) {
-      //   let imgUrl = user.avtar;
-      //   console.log(imgUrl);
-      //   const dessertRef = ref(storage, imgUrl);
-      //   // console.log(deleteObject(dessertRef).exists())
-      //   deleteObject(dessertRef)
-      //     .then(() => {
-      //       console.log("File Delete Successfully");
-      //       setUrl({
-      //         avtar:null
-      //       })
-      //     })
-      //     .catch((err) => {
-      //       alert(err);
-      //     });
-      // }
-      // console.log(url);
-      // console.log(url.avtar === user.avtar);
-      if (url.avtar !== user.avtar) {
-        console.log("updated");
-        dispatch(updateUser(url));
-      }
-    } else {
-      console.log("empty avtar file");
-    }
-  }, [url]);
+ useEffect(() => {
+  if(avtar.url && count === 1){
+    // console.log(avtar)
+    dispatch(updateUser(avtar))
+    setCount(0)
+   }
+   else {console.log( avtar)}
+ }, [avtar])
+ 
   const uploadFile = (data) => {
+    const promises = []
     try {
       data.map((item) => {
         console.log(item.name);
+        setLoading(true)
         const storageRef = ref(storage, `images/${item.name}`);
         const uploadTask = uploadBytesResumable(storageRef, item);
+        promises.push(uploadTask);
         uploadTask.on(
           "state_changed",
           (snapshot) => {
@@ -93,42 +76,51 @@ export const Profile = () => {
             const urlData = await getDownloadURL(uploadTask.snapshot.ref);
             console.log(urlData);
             // setUrl([])
-            setUrl({
-              avtar: urlData,
-              id: user._id,
-            });
-            // console.log(url)
+            if(user.avtar.name){
+              // delete existing image of user
+              deleteEI(user.avtar.name)
+              
+            }
+            setCount(prev => prev + 1)
+            setAvtar({
+                name:item.name,
+                url: urlData,
+                id: user._id,
+              });
           }
         );
       });
+      Promise.all(promises).then(()=>{
+        setUploaded(true)
+        setLoading(false)
+        console.log(avtar)
+        alert("Successfully Updated..")
+      })
     } catch (error) {
       console.log(error.message);
     }
   };
 
   const handleFile = async (event) => {
+    console.log("Running")
     console.log(event.target.files);
     const file = [...event.target.files];
     console.log(file);
     if (file.length != 0) {
       uploadFile(file);
     }
-    console.log(url);
-    console.log(user.avtar)
   };
-// console.log(url.avtar === null && user.avtar === null)
-// console.log(user.avtar)
   return (
     <div className="w-full flex flex-col justify-center items-start">
       <div className="w-full flex justify-center items-center">
         <div className="container flex flex-col border-red-500 py-8 md:flex-row justify-center gap-12 items-center">
           <div className="relative w-[8.50rem] md:w-[9.50rem] h-[8.50rem] md:h-[9.50rem] shadow-lg shadow-slate-500 dark:shadow-slate-200 rounded-full">
            {
-            isLoading && <Loader/> 
+            aLoading || isLoading && <Loader/> 
            }
             <img
             className="w-full hover:grayscale hover:cursor-pointer h-full object-cover rounded-full"
-            src={user.avtar || `https://joeschmoe.io/api/v1/${user.userName}`}
+            src={user.avtar || user.avtar.url || `https://joeschmoe.io/api/v1/${user.userName}`}
             alt=""
           />
             <abbr title="Change Profile">
@@ -138,7 +130,6 @@ export const Profile = () => {
             >
               <input
                 accept="image/*"
-                multiple
                 onChange={handleFile}
                 type="file"
                 name="images"

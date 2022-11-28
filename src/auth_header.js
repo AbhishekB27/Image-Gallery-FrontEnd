@@ -5,7 +5,7 @@ export default function authHeader() {
 
   if (token) {
     // for Node.js Express back-end
-    console.log(token)
+    // console.log(token)
     return { "x-access-token": token };
   } else {
     return {};

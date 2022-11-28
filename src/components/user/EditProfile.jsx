@@ -49,7 +49,7 @@ export const EditProfile = () => {
         // console.log(formData)
     }
   return (
-    <div class="flex items-center justify-center p-12">
+    <div class="flex items-center justify-center">
       <div class="mx-auto w-full max-w-[550px]">
         <form  onSubmit={handleSubmit}>
           <div class="-mx-3 flex flex-wrap">

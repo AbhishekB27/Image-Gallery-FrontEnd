@@ -12,7 +12,7 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-5">
           <div className="relative text-xl font-normal">
             <input
-              className="peer text-[#14213d] dark:text-[#edf2f4] bg-transparent focus:border-2 rounded-md focus:ring-4 focus:ring-pink-200 outline-none focus:border-pink-400 border w-full py-3 px-[0.94rem] pl-[32px] placeholder:text-transparent "
+              className="peer text-[#14213d] border-2 border-[#14213d] dark:border-[#edf2f4] dark:text-[#edf2f4] bg-transparent rounded-md focus:ring-4 focus:ring-[#14213d]/30 outline-none dark:focus:ring-[#edf2f4]/30 focus:border-[#14213d] w-full py-3 px-[0.94rem] transition-all pl-[32px] placeholder:text-transparent "
               placeholder="Name"
               type="text"
               name=""
@@ -28,7 +28,7 @@ const Contact = () => {
           </div>
           <div className="relative text-xl font-normal md:row-span-3">
             <textarea
-              className="peer text-[#14213d] dark:text-[#edf2f4] bg-transparent resize-none h-full focus:border-2 rounded-md focus:ring-4 focus:ring-pink-200 outline-none focus:border-pink-400 border w-full py-3 px-[0.94rem] pl-[32px] placeholder:text-transparent"
+              className="peer text-[#14213d] transition-all border-[#14213d] dark:border-[#edf2f4] dark:text-[#edf2f4] bg-transparent resize-none h-full focus:border-2 rounded-md focus:ring-4 focus:ring-[#14213d]/30 dark:focus:ring-[#edf2f4]/30 outline-none focus:border-[#14213d] border-2 w-full py-3 px-[0.94rem] pl-[32px] placeholder:text-transparent"
               placeholder="Message"
               type="text"
               name=""
@@ -46,7 +46,7 @@ const Contact = () => {
           </div>
           <div className="relative text-xl font-normal">
             <input
-              className="peer text-[#14213d] dark:text-[#edf2f4] bg-transparent focus:border-2 rounded-md focus:ring-4 focus:ring-pink-200 outline-none focus:border-pink-400 border w-full py-3 px-[0.94rem] pl-[32px] placeholder:text-transparent"
+              className="peer text-[#14213d] transition-all border-[#14213d] dark:border-[#edf2f4] dark:text-[#edf2f4] bg-transparent focus:border-2 rounded-md focus:ring-4 focus:ring-[#14213d]/30 dark:focus:ring-[#edf2f4]/30 outline-none focus:border-[#14213d] border-2 w-full py-3 px-[0.94rem] pl-[32px] placeholder:text-transparent"
               placeholder="Email"
               type="text"
               name=""
@@ -62,7 +62,7 @@ const Contact = () => {
           </div>
           <div className="relative text-xl font-normal">
             <input
-              className="peer text-[#14213d] dark:text-[#edf2f4] bg-transparent focus:border-2 rounded-md focus:ring-4 focus:ring-pink-200 outline-none focus:border-pink-400 border w-full py-3 px-[0.94rem] pl-[32px] placeholder:text-transparent"
+              className="peer text-[#14213d] transition-all border-2 border-[#14213d] dark:border-[#edf2f4] dark:text-[#edf2f4] bg-transparent focus:border-2 rounded-md focus:ring-4 focus:ring-[#14213d]/30 dark:focus:ring-[#edf2f4]/30 outline-none focus:border-[#14213d] w-full py-3 px-[0.94rem] pl-[32px] placeholder:text-transparent"
               placeholder="Phone"
               type="text"
               name=""
@@ -79,20 +79,20 @@ const Contact = () => {
           <div className="grid gap-2 text-[#14213d] dark:text-[#edf2f4] md:w-full md:col-span-2">
             <div className="text-lg font-medium">Services</div>
             <div className="flex flex-col text-base md:font-medium md:flex-row gap-2 md:justify-between">
-              <div className="text-center hover:cursor-pointer md:px-9 hover:border-pink-400 hover:text-pink-400 hover:ring-4 hover:ring-pink-100 rounded-md py-2 border">
+              <div className="text-[#14213d] transition-all border-2 border-[#14213d] dark:border-[#edf2f4] dark:text-[#edf2f4] text-center hover:cursor-pointer md:px-9 hover:border-[#14213d] hover:text-[#14213d] hover:ring-4 hover:ring-[#14213d]/30 dark:hover:ring-[#edf2f4]/30 rounded-md py-2">
                 Wedding Photo Shoot
               </div>
-              <div className="text-center hover:cursor-pointer md:px-9 hover:border-pink-400 hover:text-pink-400 hover:ring-4 hover:ring-pink-100 rounded-md py-2 border">
+              <div className="text-[#14213d] transition-all border-2 border-[#14213d] dark:border-[#edf2f4] dark:text-[#edf2f4] text-center hover:cursor-pointer md:px-9 hover:border-[#14213d] hover:text-[#14213d] hover:ring-4 hover:ring-[#14213d]/30 dark:hover:ring-[#edf2f4]/30 rounded-md py-2">
                 Wedding Photo Shoot
               </div>
-              <div className="text-center hover:cursor-pointer md:px-9 hover:border-pink-400 hover:text-pink-400 hover:ring-4 hover:ring-pink-100 rounded-md py-2 border">
+              <div className="text-[#14213d] transition-all border-2 border-[#14213d] dark:border-[#edf2f4] dark:text-[#edf2f4] text-center hover:cursor-pointer md:px-9 hover:border-[#14213d] hover:text-[#14213d] hover:ring-4 hover:ring-[#14213d]/30 dark:hover:ring-[#edf2f4]/30 rounded-md py-2">
                 Wedding Photo Shoot
               </div>
             </div>
           </div>
           <div className="md:grid md:place-items-center md:col-span-2">
             {" "}
-            <button className="w-full bg-pink-400 px-9 py-2 text-lg font-medium text-white rounded-md">
+            <button className="w-full text-[#14213d] transition-all border-2 border-[#14213d] dark:border-[#edf2f4] dark:text-[#edf2f4] px-9 py-2 text-lg font-medium rounded-md">
              <FontAwesomeIcon className="" icon={faPaperPlane}/>  Send
             </button>{" "}
           </div>

@@ -35,7 +35,7 @@ export const UploadImg = ({ uModal, setUmodal }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.5 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col md:gap-2 px-2 md:py-4 z-50 text-white justify-start items-center absolut fixed top-0 bottom-0 left-0 right-0 min-h-screen h-auto w-full bg-black/70"
+      className="flex flex-col md:gap-2 px-2 md:py-4 z-50 text-white justify-center items-center fixed top-0 bottom-0 left-0 right-0 min-h-screen h-auto w-full bg-black/70"
     >
       <div className="w-full h-fit px-2">
         {" "}

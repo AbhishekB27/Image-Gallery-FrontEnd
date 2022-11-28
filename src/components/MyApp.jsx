@@ -14,6 +14,7 @@ import { EditProfile } from "./user/EditProfile";
 import { BigImage } from "./imageC/BigImage";
 import { AddCollection } from "./imageC/AddCollection";
 import Contact from "./Contact";
+import Category from "./Category";
 
 
 export const MyApp = () => {
@@ -54,7 +55,7 @@ export const MyApp = () => {
           <Route path="/bigImage/:imgId" element={<BigImage />} />
           <Route path="userProfile/bigImage/:imgId" element={<BigImage />} />
           <Route path="addToCollection/:imgId" element={<AddCollection />} />
-
+          <Route path="category/:catName" element={<Category />} />
         </Routes>
       </div>
       <Footer />

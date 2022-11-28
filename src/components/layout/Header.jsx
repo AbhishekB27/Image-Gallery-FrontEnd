@@ -54,7 +54,7 @@ export const Header = ({ theme, setTheme }) => {
       initial={{ opacity: 0, scale: 0.5, }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="border-yellow-500 w-full absolute top-0"
+      className="border-yellow-500 z-10 w-full absolute top-0"
     >
       <AnimatePresence>
       {token && lModal ? <ProfileLogout lModal={lModal} setlModal={setlModal} /> : ""}
@@ -111,7 +111,7 @@ export const Header = ({ theme, setTheme }) => {
               </div>
             )}{" "}
           </div>
-          <div className="flex justify-center text-sm md:text-lg items-center gap-2 font-ubuntu dark:border-[#edf2f4] border-[#14213d] border-2 px-2 rounded-md">
+          <div className="flex justify-center text-s md:text-lg items-center gap-2 font-ubuntu dark:border-[#edf2f4] border-[#14213d] border-2 px-2 rounded-md">
             {theme === "dark" ? (
               <span className="scale-110 text-cyan-500 font-semibold">
                 Dark
@@ -156,12 +156,13 @@ export const Header = ({ theme, setTheme }) => {
           <li className="md:w-[100px] md:text-center   text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
           <Link to='/'> HOME </Link>
           </li>
-          <li className="relative group md:w-[100px] md:text-center   text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
+          <li className="relative group md:w-[100px] md:text-center text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
           CATEGORIES
-          <ol className="md:absolute flex flex-col justify-between transition-all group-hover:h-auto top-[2.6rem] w-full md:bg-white h-0 overflow-hidden">
+          <ol className="md:absolute dark:bg-[#14213d] dark:text-[#edf2f4] flex flex-col justify-between transition-all group-hover:h-auto top-[2.6rem] w-full md:bg-white h-0 overflow-hidden">
+          <Link to={`/category/all`}> <li className="hover:bg-slate-200 dark:hover:bg-slate-400/20 text-sm md:text-base font-light md:font-normal">All</li> </Link>
             {
               unique.map(item =>{
-                return <li className="hover:bg-slate-200 text-sm md:text-base font-light md:font-normal">{item}</li>
+                return <Link to={`/category/${item}`}> <li className="hover:bg-slate-200 dark:hover:bg-slate-400/20 text-sm md:text-base font-light md:font-normal">{item}</li> </Link>
               })
             }
           </ol>
