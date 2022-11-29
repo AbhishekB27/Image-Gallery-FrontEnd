@@ -35,7 +35,7 @@ const useUpload = ({ files, category, user }) => {
               for (let i = 0; i < files.length; i++) {
                 const tURL = URL.createObjectURL(files[i]);
                 // console.log(Math.round(event.target.files[i].size/1024) > 1024 ? `${Math.round(event.target.files[i].size/1024)} MB` : `${Math.round(event.target.files[i].size/1024)} KB`)
-                const newImage = files[i];
+                // const newImage = files[i];
                 setIProgress((prev) => [
                   ...prev,
                   { iURL: tURL, iName: files[i].name, progress: 0 },

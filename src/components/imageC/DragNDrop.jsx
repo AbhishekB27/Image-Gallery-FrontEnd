@@ -21,7 +21,12 @@ const DragNDrop = () => {
   console.log(files)
   const handleFile = (e) => {
     let selectedFile = e.target.files;
-        setFiles({ files: selectedFile, category: category, user: user._id });
+    if(selectedFile.length > 5){
+      setFiles({ files: selectedFile, category: category, user: user._id });
+    }
+    else{
+      toast.info("Select Atleast 5 Images",{position:'top-center'})
+    }
     // if(selectedFile.length >= 5){
     //   if(category === ''){
     //     toast.info("Please add a category first",{position:'top-center'})
@@ -46,11 +51,11 @@ const DragNDrop = () => {
   };
   const fileDrop = (event) => {
     let selectedFile = event.dataTransfer.files;
-    if(category === ''){
-      toast.info("Please add a category first")
+    if(selectedFile.length > 5){
+      setFiles({ files: selectedFile, category: category, user: user._id });
     }
     else{
-      setFiles({ files: selectedFile, category: category, user: user._id });
+      toast.info("Select Atleast 5 Images",{position:'top-center'})
     }
   };
   const uploadData = () => {
