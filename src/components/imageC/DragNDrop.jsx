@@ -64,9 +64,9 @@ const DragNDrop = () => {
   }
   // Getting the progress and url from the hook
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-2 relative bg-slate-500 dark:bg-slate-400 h-auto  lg:h-[36rem]">
+    <div className="grid grid-cols-1 place-items-center md:place-items-stretch lg:grid-cols-3 w-full gap-2 relative bg-slate-500 dark:bg-slate-400 h-auto lg:h-[36rem]">
       {/* <div className="overflow-auto flex border-2 w-full"> */}
-      <div className="flex relative flex-col gap-2 px-2 py-1">
+      <div className="flex relative flex-col gap-2 px-2 w-full py-1 translate-x-1">
         <div className="relative hover:bg-white/40 rounded-sm border-2 border-dashed bg-white/30 h-[10rem] lg:h-[20rem]">
           <label
             onDragOver={dragOver}

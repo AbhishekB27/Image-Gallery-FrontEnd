@@ -75,21 +75,25 @@ export const Header = ({ theme, setTheme }) => {
             {!token ? (
               <>
                 {" "}
+                <Link to='/login'>
                 <motion.button
                 whileHover={{scale:1.1}}
                 whileTap={{scale:0.7}}
                 className="md:px-5 px-3 py-1 rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
-                  <Link to='/login'> LOGIN </Link>
+                LOGIN
                 </motion.button>
+                </Link>
+                <Link to='/signup'>
                 <motion.button
                 whileHover={{scale:1.1}}
                 whileTap={{scale:0.7}}
                 className="md:px-5 px-3 py-1 rounded-md dark:bg-[#edf2f4] bg-[#14213d] dark:text-[#14213d] text-[#edf2f4] font-medium">
-                  <Link to='/signup'> SIGNUP </Link>
+                SIGNUP
                 </motion.button>{" "}
+                </Link>
               </>
             ) : (
-              <div className="flex gap-2">
+              <div className="flex border-2 gap-2">
                 <motion.button
               onClick={handleProfile}
               whileTap={{scale:0.7}}
@@ -152,7 +156,7 @@ export const Header = ({ theme, setTheme }) => {
           <Hamburger setToggle={setToggle}/>
         </div>
         <ol
-        className={`${toggle === true ? 'h-[100vh] opacity-100 transition-all duration-300 ease-linear' : 'h-[0] opacity-0 transition-all duration-300 ease-linear'} md:text-current text-white font-medium absolute md:static w-full  z-50 md:z-0  md:translate-y-0 md:opacity-100 md:flex md:flex-row md:justify-end md:space-y-0 md:h-auto md:bg-transparent flex flex-col justify-center items-center space-y-4 bg-black/95 border-transparent border-2`}>
+        className={`${toggle === true ? 'h-[100vh] opacity-100 transition-all duration-300 ease-linear' : 'h-[0] opacity-0 -z-50  transition-all duration-300 ease-linear'} md:text-current text-white font-medium absolute md:static w-full  z-50 md:z-0  md:translate-y-0 md:opacity-100 md:flex md:flex-row md:justify-end md:space-y-0 md:h-auto md:bg-transparent flex flex-col justify-center items-center space-y-4 bg-black/95 border-transparent border-2`}>
           <li className="md:w-[100px] md:text-center   text-center cursor-pointer hover:dark:border-b-[#edf2f4] hover:border-b-[#14213d] border-2 border-transparent py-2">
           <Link to='/'> HOME </Link>
           </li>

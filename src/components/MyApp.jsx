@@ -15,6 +15,7 @@ import { BigImage } from "./imageC/BigImage";
 import { AddCollection } from "./imageC/AddCollection";
 import Contact from "./Contact";
 import Category from "./Category";
+import { AboutUs } from "./AboutUs";
 
 
 export const MyApp = () => {
@@ -45,6 +46,7 @@ export const MyApp = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contactUs" element={<Contact />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/userProfile" element={<Profile />}>

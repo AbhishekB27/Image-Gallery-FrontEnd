@@ -120,7 +120,7 @@ export const Profile = () => {
            }
             <img
             className="w-full hover:grayscale hover:cursor-pointer h-full object-cover rounded-full"
-            src={user.avtar || user.avtar.url || `https://joeschmoe.io/api/v1/${user.userName}`}
+            src={user.avtar.url || `https://joeschmoe.io/api/v1/${user.userName}`}
             alt=""
           />
             <abbr title="Change Profile">
