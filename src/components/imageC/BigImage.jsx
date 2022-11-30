@@ -98,7 +98,7 @@ export const BigImage = () => {
                   src={
                     selectedImage.length === 0
                       ? avtar
-                      : (selectedImage[0].user.avtar || `https://joeschmoe.io/api/v1/${selectedImage[0].user.userName}`)
+                      : (selectedImage[0].user.avtar.url || `https://joeschmoe.io/api/v1/${selectedImage[0].user.userName}`)
                   }
                   alt=""
                 />

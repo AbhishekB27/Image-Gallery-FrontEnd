@@ -13,33 +13,21 @@ import { setImages } from "../../actions/usersData";
 const DragNDrop = () => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.loader);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState("");
   const { user } = useSelector((state) => state.auth);
   const [files, setFiles] = useState([]);
   const [count, setCount] = useState(0);
   const { iProgress, isLoadingI, data, uploaded } = useUpload(files);
-  console.log(files)
+  console.log(files);
   const handleFile = (e) => {
     let selectedFile = e.target.files;
-    if(selectedFile.length > 5){
+    if (selectedFile.length >= 5) {
       setFiles({ files: selectedFile, category: category, user: user._id });
+    } else {
+      toast.info("Select Atleast 5 Images", { position: "top-center" });
     }
-    else{
-      toast.info("Select Atleast 5 Images",{position:'top-center'})
-    }
-    // if(selectedFile.length >= 5){
-    //   if(category === ''){
-    //     toast.info("Please add a category first",{position:'top-center'})
-    //   }
-    //   else{
-    //     setFiles({ files: selectedFile, category: category, user: user._id });
-    //   }
-    // }
-    // else{
-    //   toast.info("Select atleast 5 images...",{position:'top-center'})
-    // }
   };
-  
+
   const dragOver = (event) => {
     event.preventDefault();
   };
@@ -51,22 +39,20 @@ const DragNDrop = () => {
   };
   const fileDrop = (event) => {
     let selectedFile = event.dataTransfer.files;
-    if(selectedFile.length > 5){
+    if (selectedFile.length >= 5) {
       setFiles({ files: selectedFile, category: category, user: user._id });
-    }
-    else{
-      toast.info("Select Atleast 5 Images",{position:'top-center'})
+    } else {
+      toast.info("Select Atleast 5 Images", { position: "top-center" });
     }
   };
   const uploadData = () => {
-    if(data.length > 0 && category !=''){
-      data.map(item => item.category = category)
-      console.log(data)
-      setCount(prev => prev + 1)
-      // dispatch(setImages(data))
-    }
-    else toast.info("Please Add Category First", {position:'top-center'})
-  }
+    if (data.length > 0 && category != "") {
+      data.map((item) => (item.category = category));
+      // console.log(data)
+      setCount((prev) => prev + 1);
+      dispatch(setImages(data));
+    } else toast.info("Please Add Category First", { position: "top-center" });
+  };
   // Getting the progress and url from the hook
   return (
     <div className="grid grid-cols-1 place-items-center md:place-items-stretch lg:grid-cols-3 w-full gap-2 relative bg-slate-500 dark:bg-slate-400 h-auto lg:h-[36rem]">
@@ -79,9 +65,7 @@ const DragNDrop = () => {
             onDragLeave={dragLeave}
             onDrop={fileDrop}
             className={`absolute z-10 grid h-full w-full ${
-              uploaded || isLoadingI
-                ? "cursor-not-allowed "
-                : "cursor-pointer "
+              uploaded || isLoadingI ? "cursor-not-allowed " : "cursor-pointer "
             } place-items-center bg-transparent`}
             for="dragNdrop"
           >
@@ -128,9 +112,11 @@ const DragNDrop = () => {
         </div>
         <div className="flex w-full justify-between rounded-md bg-slate-200/30">
           <input
-            onChange={(event)=>{setCategory(event.target.value)}}
+            onChange={(event) => {
+              setCategory(event.target.value);
+            }}
             className={`rounded-md ${
-              isLoadingI || count > 0  ? "cursor-not-allowed" : " cursor-auto"
+              isLoadingI || count > 0 ? "cursor-not-allowed" : " cursor-auto"
             } w-full focus:ring-4 ring-slate-600 bg-transparent px-4 py-2 text-base text-white outline-none placeholder:text-gray-50`}
             placeholder="Add Category"
             type="text"
@@ -145,9 +131,11 @@ const DragNDrop = () => {
             onClick={uploadData}
             className={`px-3 py-2 hover:bg-slate-600 bg-slate-800 rounded-md w-[100px] h-[40px]
             ${
-               isLoadingI || isLoading || count > 0 ? "cursor-not-allowed" : " cursor-pointer"
+              isLoadingI || isLoading || count > 0
+                ? "cursor-not-allowed"
+                : " cursor-pointer"
             } `}
-            disabled={ isLoadingI || isLoading || count > 0 ? true : false}
+            disabled={isLoadingI || isLoading || count > 0 ? true : false}
           >
             {isLoading ? (
               <div className="scaling-dots place-items-center">

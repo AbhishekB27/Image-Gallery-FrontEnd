@@ -63,7 +63,7 @@ export const ImageCard = ({ grdCls, itemId, imgUrl, userName, userAvtar }) => {
           <div className="relative w-[2rem] h-[2rem] rounded-full">
             <img
               className="w-full md:hover:grayscale md:hover:cursor-pointer h-full object-cover rounded-full"
-              src={userAvtar || `https://joeschmoe.io/api/v1/${userName}`}
+              src={userAvtar && userAvtar.url  || `https://joeschmoe.io/api/v1/${userName}`}
               alt=""
             />
           </div>

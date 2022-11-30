@@ -58,6 +58,7 @@ export const MyApp = () => {
           <Route path="userProfile/bigImage/:imgId" element={<BigImage />} />
           <Route path="addToCollection/:imgId" element={<AddCollection />} />
           <Route path="category/:catName" element={<Category />} />
+          <Route path='*' element={<HomePage/>}></Route>
         </Routes>
       </div>
       <Footer />

@@ -26,7 +26,7 @@ export const Review = ({reviews,imgId}) => {
                       <div className="relative w-[3rem] h-[3rem] rounded-full">
                         <img
                           className="w-full hover:grayscale hover:cursor-pointer h-full object-cover rounded-full"
-                          src={item.user.avtar || `https://joeschmoe.io/api/v1/${item.user.userName}`}
+                          src={item.user.avtar.url || `https://joeschmoe.io/api/v1/${item.user.userName}`}
                           alt=""
                         />
                       </div>

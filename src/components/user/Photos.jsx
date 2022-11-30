@@ -33,7 +33,7 @@ export const Photos = () => {
                   itemId={item._id}
                   imgUrl={item.imageUrl}
                   userName={item.user.userName}
-                  userAvtar={item.user.avtar}
+                  userAvtar={item.user.avtar.url}
                 />
               );
             })}

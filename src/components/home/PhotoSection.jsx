@@ -9,7 +9,6 @@ const PhotoSection = () => {
     const {isLoading} = useSelector((state) => state.loader);
   const gridArray = ['lg:col-span-4 lg:row-span-2 md:col-span-3 sm:col-span-3','lg:col-span-3 md:col-span-4 sm:col-span-2','lg:col-span-6 md:col-span-4 md:row-span-2 sm:col-span-5','lg:col-span-4 md:col-span-3 sm:col-span-2','md:col-span-3 sm:col-span-3']
   // const gridArray = ["sm:col-span-3","sm:col-span-2","sm:col-span-5","sm:col-span-2","sm:col-span-3"]
-
   let gIndex = 0
   return (
     <div className="w-full grid place-items-center border-yellow-200">
